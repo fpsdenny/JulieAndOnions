@@ -1,4 +1,3 @@
-
 :root {
   --bg: #f2ebde;
   --paper: #f7f1e6;
@@ -12,7 +11,9 @@
 }
 
 * { box-sizing: border-box; }
+
 html { scroll-behavior: smooth; }
+
 body {
   margin: 0;
   font-family: Georgia, "Times New Roman", serif;
@@ -30,7 +31,11 @@ a {
 }
 
 a:hover { color: var(--accent); }
-img { max-width: 100%; display: block; }
+
+img {
+  max-width: 100%;
+  display: block;
+}
 
 .site-shell {
   min-height: 100vh;
@@ -138,7 +143,9 @@ img { max-width: 100%; display: block; }
   border-bottom: 1px solid var(--line);
 }
 
-.path-item:last-child { border-bottom: none; }
+.path-item:last-child {
+  border-bottom: none;
+}
 
 .path-item:hover {
   transform: translateX(3px);
