@@ -1,10 +1,8 @@
 
-# Julie and Onions v4
+# Julie and Onions v5
 
 Consolidated update with:
+- dill-style botanical trace outside the right edge of the left panel
 - darker, more defined top navigation
 - tuned homepage spacing
-- allium-style stem trace outside the right edge of the left panel
 - right-side navigation right-aligned and refined
-
-Upload these files to your GitHub Pages repository and push.
