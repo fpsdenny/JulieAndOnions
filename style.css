@@ -1,3 +1,4 @@
+
 :root {
   --bg: #e8dece;
   --panel: #f5ede0;
@@ -52,7 +53,6 @@ a:hover {
 }
 
 /* TOP NAVIGATION */
-
 .topbar {
   width: min(var(--max-width), calc(100% - 2rem));
   margin: 0 auto;
@@ -122,7 +122,6 @@ a:hover {
 }
 
 /* MAIN LAYOUT */
-
 .home-main,
 .page-main {
   width: min(var(--max-width), calc(100% - 2rem));
@@ -142,7 +141,6 @@ a:hover {
 }
 
 /* LEFT TITLE / HOST PANEL */
-
 .left-column {
   grid-column: 1;
   padding: 2.4rem 2.2rem 2.5rem;
@@ -156,7 +154,7 @@ a:hover {
     0 24px 54px rgba(24, 18, 12, 0.14),
     inset 0 1px 0 rgba(255,255,255,0.4);
   position: relative;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .left-column::before {
@@ -226,8 +224,54 @@ a:hover {
   color: #65594d;
 }
 
-/* RIGHT COLUMN */
+/* STEM TRACE */
+.stem-trace {
+  grid-column: 2;
+  align-self: start;
+  justify-self: center;
+  width: 92px;
+  height: 320px;
+  margin-top: 1.2rem;
+  opacity: 0.55;
+  pointer-events: none;
+}
 
+.stem-trace svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.stem-line {
+  fill: none;
+  stroke: rgba(125, 68, 48, 0.24);
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.stem-line.soft {
+  stroke: rgba(125, 68, 48, 0.16);
+  stroke-width: 1.6;
+}
+
+.bloom-core {
+  fill: rgba(139, 83, 56, 0.18);
+  stroke: rgba(125, 68, 48, 0.26);
+  stroke-width: 1.2;
+}
+
+.bloom-ray {
+  fill: none;
+  stroke: rgba(125, 68, 48, 0.2);
+  stroke-width: 1.4;
+  stroke-linecap: round;
+}
+
+.bloom-dot {
+  fill: rgba(164, 95, 69, 0.24);
+}
+
+/* RIGHT COLUMN */
 .right-column {
   grid-column: 3;
   padding-top: 1.4rem;
@@ -271,7 +315,6 @@ a:hover {
 }
 
 /* FOOTER */
-
 .site-footer {
   width: min(var(--max-width), calc(100% - 2rem));
   margin: 0 auto;
@@ -282,7 +325,6 @@ a:hover {
 }
 
 /* INNER PAGES */
-
 .page-main {
   padding: 4rem 0 4.2rem;
 }
@@ -339,7 +381,6 @@ a:hover {
 }
 
 /* MOBILE */
-
 @media (max-width: 860px) {
   .home-grid {
     grid-template-columns: 1fr;
@@ -347,8 +388,13 @@ a:hover {
   }
 
   .left-column,
-  .right-column {
+  .right-column,
+  .stem-trace {
     grid-column: auto;
+  }
+
+  .stem-trace {
+    display: none;
   }
 
   .right-column {
@@ -392,4 +438,3 @@ a:hover {
     font-size: 1.45rem;
   }
 }
-``
