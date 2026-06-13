@@ -39,7 +39,6 @@ a:hover { color: var(--accent); }
   flex-direction: column;
 }
 
-/* TOP NAVIGATION */
 .topbar {
   width: min(var(--max-width), calc(100% - 2rem));
   margin: 0 auto;
@@ -93,13 +92,9 @@ a:hover { color: var(--accent); }
   transition: width 180ms ease;
 }
 .site-nav a.active,
-.site-nav a:hover {
-  color: #6a3b29;
-}
+.site-nav a:hover { color: #6a3b29; }
 .site-nav a.active::after,
-.site-nav a:hover::after {
-  width: 100%;
-}
+.site-nav a:hover::after { width: 100%; }
 
 .home-main,
 .page-main {
@@ -107,17 +102,19 @@ a:hover { color: var(--accent); }
   margin: 0 auto;
   flex: 1;
 }
-.home-main { padding: 5.4rem 0 4.5rem; }
+.home-main { padding: 5.2rem 0 4rem; }
 .home-grid {
   display: grid;
-  grid-template-columns: minmax(390px, 1fr) minmax(70px, 0.16fr) minmax(260px, 0.72fr);
+  grid-template-columns: minmax(340px, 0.88fr) minmax(52px, 0.1fr) minmax(250px, 0.68fr);
   gap: 0;
   align-items: start;
 }
 
 .left-column {
   grid-column: 1;
-  padding: 2.4rem 2.2rem 2.5rem;
+  padding: 2.55rem 2rem 2.85rem;
+  max-width: 520px;
+  min-height: 560px;
   background:
     radial-gradient(circle at 12% 12%, rgba(255, 244, 238, 0.76), transparent 30%),
     radial-gradient(circle at 85% 18%, rgba(255, 226, 213, 0.30), transparent 28%),
@@ -149,8 +146,8 @@ a:hover { color: var(--accent); }
   background: linear-gradient(180deg, #a45f45, rgba(111, 63, 43, 0.15));
 }
 .brand-title {
-  margin: 0 0 2rem;
-  font-size: clamp(3rem, 5vw, 5.4rem);
+  margin: 0 0 2.15rem;
+  font-size: clamp(3rem, 4.7vw, 5.1rem);
   line-height: 0.9;
   letter-spacing: 0.01em;
   font-weight: normal;
@@ -165,7 +162,7 @@ a:hover { color: var(--accent); }
   background: linear-gradient(90deg, rgba(139, 83, 56, 0.85), transparent);
 }
 .host-copy {
-  max-width: 33rem;
+  max-width: 29rem;
   position: relative;
 }
 .placeholder-label {
@@ -192,11 +189,14 @@ a:hover { color: var(--accent); }
   grid-column: 2;
   align-self: start;
   justify-self: center;
-  width: 116px;
-  height: 380px;
-  margin-top: 0.6rem;
-  opacity: 0.9;
+  width: 104px;
+  height: 360px;
+  margin-top: 0.2rem;
+  margin-left: -10px;
+  opacity: 0.92;
   pointer-events: none;
+  transform: rotate(10deg);
+  transform-origin: top center;
 }
 .stem-trace svg {
   width: 100%;
@@ -226,10 +226,10 @@ a:hover { color: var(--accent); }
 
 .right-column {
   grid-column: 3;
-  padding-top: 1.4rem;
+  padding-top: 1.8rem;
   text-align: right;
   justify-self: end;
-  max-width: 300px;
+  max-width: 280px;
 }
 .path-list {
   display: grid;
@@ -318,7 +318,11 @@ a:hover { color: var(--accent); }
     justify-self: start;
     max-width: none;
   }
-  .left-column { padding: 1.7rem 1.5rem 1.8rem; }
+  .left-column {
+    padding: 1.7rem 1.5rem 1.8rem;
+    min-height: auto;
+    max-width: none;
+  }
 }
 
 @media (max-width: 540px) {
