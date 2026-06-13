@@ -1,4 +1,3 @@
-
 :root {
   --bg: #e8dece;
   --panel: #f5ede0;
@@ -58,7 +57,8 @@ a:hover {
   width: min(var(--max-width), calc(100% - 2rem));
   margin: 0 auto;
   padding: 1.2rem 0 1rem;
-  border-bottom: 1px solid rgba(36, 29, 23, 0.18);
+  border-bottom: 1px solid rgba(36, 29, 23, 0.28);
+  background: linear-gradient(180deg, rgba(120, 86, 60, 0.08), rgba(70, 45, 28, 0.02));
   position: relative;
 }
 
@@ -67,9 +67,9 @@ a:hover {
   position: absolute;
   left: 0;
   top: 0;
-  width: 180px;
+  width: 220px;
   height: 1px;
-  background: linear-gradient(90deg, rgba(111, 63, 43, 0.55), transparent);
+  background: linear-gradient(90deg, rgba(111, 63, 43, 0.75), transparent);
 }
 
 .topbar::after {
@@ -77,9 +77,9 @@ a:hover {
   position: absolute;
   left: 0;
   bottom: -1px;
-  width: 140px;
+  width: 170px;
   height: 2px;
-  background: linear-gradient(90deg, rgba(111, 63, 43, 0.85), transparent);
+  background: linear-gradient(90deg, rgba(111, 63, 43, 0.95), transparent);
 }
 
 .site-nav {
@@ -94,7 +94,7 @@ a:hover {
 }
 
 .site-nav a {
-  opacity: 0.82;
+  opacity: 0.88;
   position: relative;
   padding-bottom: 0.2rem;
 }
@@ -106,14 +106,14 @@ a:hover {
   bottom: -0.1rem;
   width: 0;
   height: 1px;
-  background: #7a4630;
+  background: #6e3f2c;
   transition: width 180ms ease;
 }
 
 .site-nav a.active,
 .site-nav a:hover {
   opacity: 1;
-  color: #7a4630;
+  color: #6e3f2c;
 }
 
 .site-nav a.active::after,
@@ -136,7 +136,7 @@ a:hover {
 
 .home-grid {
   display: grid;
-  grid-template-columns: minmax(390px, 0.95fr) minmax(140px, 0.32fr) minmax(240px, 0.65fr);
+  grid-template-columns: minmax(390px, 1fr) minmax(70px, 0.16fr) minmax(260px, 0.72fr);
   gap: 0;
   align-items: start;
 }
@@ -233,7 +233,7 @@ a:hover {
   padding-top: 1.4rem;
   text-align: right;
   justify-self: end;
-  max-width: 280px;
+  max-width: 300px;
 }
 
 .path-list {
@@ -392,3 +392,4 @@ a:hover {
     font-size: 1.45rem;
   }
 }
+``
