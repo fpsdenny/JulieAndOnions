@@ -1,3 +1,4 @@
+
 :root {
   --bg: #e8dece;
   --panel: #f5ede0;
@@ -30,6 +31,11 @@ body {
   line-height: 1.65;
 }
 
+img {
+  max-width: 100%;
+  display: block;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -47,13 +53,22 @@ a:hover {
 }
 
 /* TOP NAVIGATION */
-
 .topbar {
   width: min(var(--max-width), calc(100% - 2rem));
   margin: 0 auto;
   padding: 1.2rem 0 1rem;
-  border-bottom: 1px solid var(--line);
+  border-bottom: 1px solid rgba(36, 29, 23, 0.18);
   position: relative;
+}
+
+.topbar::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 180px;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(111, 63, 43, 0.55), transparent);
 }
 
 .topbar::after {
@@ -63,7 +78,7 @@ a:hover {
   bottom: -1px;
   width: 140px;
   height: 2px;
-  background: linear-gradient(90deg, var(--accent), transparent);
+  background: linear-gradient(90deg, rgba(111, 63, 43, 0.85), transparent);
 }
 
 .site-nav {
@@ -72,13 +87,13 @@ a:hover {
   gap: 0.9rem 1.5rem;
   align-items: center;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 0.83rem;
+  font-size: 0.82rem;
   letter-spacing: 0.11em;
   text-transform: uppercase;
 }
 
 .site-nav a {
-  opacity: 0.8;
+  opacity: 0.82;
   position: relative;
   padding-bottom: 0.2rem;
 }
@@ -90,14 +105,14 @@ a:hover {
   bottom: -0.1rem;
   width: 0;
   height: 1px;
-  background: var(--accent);
+  background: #7a4630;
   transition: width 180ms ease;
 }
 
 .site-nav a.active,
 .site-nav a:hover {
   opacity: 1;
-  color: var(--accent);
+  color: #7a4630;
 }
 
 .site-nav a.active::after,
@@ -106,7 +121,6 @@ a:hover {
 }
 
 /* MAIN LAYOUT */
-
 .home-main,
 .page-main {
   width: min(var(--max-width), calc(100% - 2rem));
@@ -120,22 +134,23 @@ a:hover {
 
 .home-grid {
   display: grid;
-  grid-template-columns: minmax(360px, 1.15fr) minmax(260px, 0.85fr);
-  gap: 5rem;
+  grid-template-columns: minmax(380px, 0.95fr) minmax(90px, 0.2fr) minmax(260px, 0.7fr);
+  gap: 0;
   align-items: start;
 }
 
 /* LEFT TITLE / HOST PANEL */
-
 .left-column {
-  padding: 2.2rem 2rem 2.3rem;
+  grid-column: 1;
+  padding: 2.3rem 2.1rem 2.4rem;
   background:
-    linear-gradient(180deg, rgba(255,255,255,0.26), rgba(255,255,255,0.06)),
-    linear-gradient(135deg, var(--panel) 0%, var(--panel-deep) 100%);
-  border: 1px solid rgba(36, 29, 23, 0.14);
+    radial-gradient(circle at top left, rgba(255, 248, 240, 0.55), transparent 34%),
+    linear-gradient(180deg, rgba(255,255,255,0.24), rgba(255,255,255,0.05)),
+    linear-gradient(135deg, #f5e8d8 0%, #eedcc8 100%);
+  border: 1px solid rgba(36, 29, 23, 0.12);
   box-shadow:
-    0 22px 48px var(--shadow),
-    inset 0 1px 0 var(--glow);
+    0 22px 48px rgba(24, 18, 12, 0.14),
+    inset 0 1px 0 rgba(255,255,255,0.4);
   position: relative;
   overflow: hidden;
 }
@@ -143,12 +158,10 @@ a:hover {
 .left-column::before {
   content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   background:
-    radial-gradient(circle at top left, rgba(255,255,255,0.22), transparent 38%);
+    radial-gradient(circle at 14% 18%, rgba(255,255,255,0.20), transparent 20%),
+    radial-gradient(circle at 86% 12%, rgba(255,244,236,0.14), transparent 24%);
   pointer-events: none;
 }
 
@@ -156,16 +169,16 @@ a:hover {
   content: "";
   position: absolute;
   left: 0;
-  top: 1.4rem;
-  bottom: 1.4rem;
-  width: 3px;
-  background: linear-gradient(180deg, var(--accent-bright), rgba(111, 63, 43, 0.18));
+  top: 1.2rem;
+  bottom: 1.2rem;
+  width: 4px;
+  background: linear-gradient(180deg, #a45f45, rgba(111, 63, 43, 0.15));
 }
 
 .brand-title {
   margin: 0 0 2rem;
-  font-size: clamp(2.8rem, 5vw, 5rem);
-  line-height: 0.94;
+  font-size: clamp(2.9rem, 5vw, 5.2rem);
+  line-height: 0.92;
   letter-spacing: 0.01em;
   font-weight: normal;
   text-transform: none;
@@ -173,7 +186,7 @@ a:hover {
 }
 
 .host-copy {
-  max-width: 34rem;
+  max-width: 33rem;
   position: relative;
 }
 
@@ -184,38 +197,39 @@ a:hover {
   font-size: 0.68rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: #755f50;
 }
 
 .placeholder-block {
-  padding: 1.25rem 1.25rem;
-  margin: 0 0 1.6rem;
-  background: rgba(255, 255, 255, 0.34);
-  border: 1px solid rgba(36, 29, 23, 0.08);
-  border-left: 3px solid rgba(111, 63, 43, 0.42);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.35);
+  padding: 1.28rem 1.25rem;
+  margin: 0 0 1.65rem;
+  background: rgba(255, 255, 255, 0.36);
+  border: 1px solid rgba(36, 29, 23, 0.07);
+  border-left: 3px solid rgba(164, 95, 69, 0.42);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.34);
 }
 
 .placeholder-block p {
   margin: 0;
-  color: var(--muted);
+  color: #65594d;
 }
 
 /* RIGHT COLUMN */
-
 .right-column {
-  padding-top: 1rem;
+  grid-column: 3;
+  padding-top: 1.2rem;
 }
 
 .path-list {
   display: grid;
-  gap: 2rem;
+  gap: 2.2rem;
 }
 
 .path-item {
   display: block;
-  padding: 0 0 1.4rem;
-  border-bottom: 1px solid var(--line);
+  padding: 0 0 1.45rem;
+  border-bottom: 1px solid rgba(36, 29, 23, 0.14);
+  transition: transform 180ms ease, opacity 180ms ease;
 }
 
 .path-item:last-child {
@@ -223,24 +237,24 @@ a:hover {
 }
 
 .path-item:hover {
-  transform: translateX(4px);
+  transform: translateX(6px);
 }
 
 .path-item h2 {
   margin: 0 0 0.25rem;
-  font-size: 1.7rem;
-  line-height: 1.08;
+  font-size: 1.75rem;
+  line-height: 1.05;
   font-weight: normal;
+  color: #7a4630;
 }
 
 .path-item p {
   margin: 0;
-  color: var(--muted);
+  color: #6a5b4d;
   font-size: 1rem;
 }
 
 /* FOOTER */
-
 .site-footer {
   width: min(var(--max-width), calc(100% - 2rem));
   margin: 0 auto;
@@ -251,7 +265,6 @@ a:hover {
 }
 
 /* INNER PAGES */
-
 .page-main {
   padding: 4rem 0 4.2rem;
 }
@@ -308,19 +321,23 @@ a:hover {
 }
 
 /* MOBILE */
-
 @media (max-width: 860px) {
   .home-grid {
     grid-template-columns: 1fr;
     gap: 2.75rem;
   }
 
-  .left-column {
-    padding: 1.7rem 1.5rem 1.8rem;
+  .left-column,
+  .right-column {
+    grid-column: auto;
   }
 
   .right-column {
     padding-top: 0;
+  }
+
+  .left-column {
+    padding: 1.7rem 1.5rem 1.8rem;
   }
 }
 
