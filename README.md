@@ -1,8 +1,9 @@
 
-# Julie and Onions v5
+# Julie and Onions v6
 
 Consolidated update with:
-- dill-style botanical trace outside the right edge of the left panel
-- darker, more defined top navigation
+- larger, darker dill trace with muted yellow flower heads
+- oak-leaning background tones
+- darker mahogany top navigation bar
 - tuned homepage spacing
 - right-side navigation right-aligned and refined
