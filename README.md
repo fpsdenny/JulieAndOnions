@@ -1,8 +1,8 @@
 
-# Julie and Onions v7
+# Julie and Onions v8
 
 Consolidated update with:
-- tightened left panel: narrower and taller
-- dill trace tidied, moved up, and tilted right
-- right-side navigation pulled slightly inward
+- more detailed, more elegant dill illustration
+- tightened left panel retained
 - oak background and mahogany top bar retained
+- right-side navigation pulled slightly inward
