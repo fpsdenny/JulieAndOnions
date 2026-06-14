@@ -189,11 +189,11 @@ a:hover { color: var(--accent); }
   grid-column: 2;
   align-self: start;
   justify-self: center;
-  width: 104px;
-  height: 360px;
-  margin-top: 0.2rem;
-  margin-left: -10px;
-  opacity: 0.92;
+  width: 118px;
+  height: 395px;
+  margin-top: -0.15rem;
+  margin-left: -12px;
+  opacity: 0.95;
   pointer-events: none;
   transform: rotate(10deg);
   transform-origin: top center;
@@ -205,23 +205,30 @@ a:hover { color: var(--accent); }
 }
 .dill-stem {
   fill: none;
-  stroke: rgba(92, 67, 42, 0.52);
-  stroke-width: 2.6;
+  stroke: rgba(88, 64, 40, 0.58);
+  stroke-width: 2.7;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
 .dill-branch {
   fill: none;
-  stroke: rgba(92, 67, 42, 0.42);
-  stroke-width: 1.7;
+  stroke: rgba(88, 64, 40, 0.46);
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.dill-branch-fine {
+  fill: none;
+  stroke: rgba(88, 64, 40, 0.34);
+  stroke-width: 0.95;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
 .dill-floret {
-  fill: rgba(190, 156, 60, 0.78);
+  fill: rgba(190, 156, 60, 0.82);
 }
 .dill-floret-soft {
-  fill: rgba(214, 186, 93, 0.56);
+  fill: rgba(214, 186, 93, 0.60);
 }
 
 .right-column {
