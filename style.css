@@ -269,9 +269,9 @@ a:hover {
   grid-column: 3;
   padding-top: 1.8rem;
   text-align: right;
-  justify-self: start;
-  max-width: 270px;
-  margin-left: 3px;
+  justify-self: end;
+  width: min(100%, 270px);
+  margin-left: 0;
 }
 
 .path-list {
@@ -393,7 +393,7 @@ a:hover {
     text-align: left;
     justify-self: start;
     max-width: none;
-    margin-left: 0;
+    width: auto;
   }
 
   .left-column {
