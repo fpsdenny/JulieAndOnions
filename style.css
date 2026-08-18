@@ -218,7 +218,7 @@ a:focus-visible {
 .host-epigraph {
   font-style: italic;
   font-size: 0.89rem;
-  color: var(--ink-mut);
+  color: var(--ink-soft);
   max-width: 24rem;
   margin: 0 0 2rem;
   line-height: 1.55;
@@ -423,7 +423,7 @@ a:focus-visible {
   font-weight: normal;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: var(--brass-dim);
+  color: var(--parchment);
   font-family: var(--caps);
 }
 
@@ -531,8 +531,8 @@ a:focus-visible {
   font-family: var(--caps);
   text-transform: uppercase;
   letter-spacing: 0.13em;
-  font-size: 0.66rem;
-  color: var(--ink-mut);
+  font-size: 0.72rem;
+  color: var(--ink);
   margin-bottom: 0.9rem;
 }
 
@@ -636,8 +636,8 @@ a:focus-visible {
 
 .room-grid {
   display: grid;
-  grid-template-columns: minmax(280px, 30rem) minmax(200px, 16rem);
-  column-gap: 3.2rem;
+  grid-template-columns: minmax(260px, 25rem) minmax(300px, 40rem);
+  column-gap: 3rem;
   justify-content: start;
   align-items: start;
 }
@@ -705,8 +705,8 @@ a:focus-visible {
   font-size: 0.68rem;
   letter-spacing: 0.11em;
   text-transform: uppercase;
-  color: var(--ink-mut);
-  border: 1px solid rgba(90, 60, 38, 0.28);
+  color: var(--ink-soft);
+  border: 1px solid rgba(74, 56, 39, 0.45);
   padding: 0.28rem 0.6rem;
   line-height: 1;
 }
@@ -840,4 +840,208 @@ a:focus-visible {
   .sub-nav a::after {
     transition: none;
   }
+}
+
+/* ------- the summary box: a featured link, kept prominent ------- */
+
+.desk-feature {
+  margin: 0 0 1.9rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(90, 60, 38, 0.22);
+}
+
+.desk-handle {
+  display: block;
+  font-size: 1.35rem;
+  line-height: 1.25;
+  color: var(--ink);
+  margin-bottom: 0.5rem;
+}
+
+.desk-handle .desk-at {
+  display: block;
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--ink-soft);
+}
+
+.desk-handle:hover,
+.desk-handle:hover .desk-at {
+  color: var(--violet-deep);
+}
+
+.desk-handle::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 2px;
+  margin-top: 0.7rem;
+  background: linear-gradient(90deg, rgba(164, 95, 69, 0.85), rgba(167, 107, 153, 0.6), transparent);
+}
+
+.desk-note {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--ink-soft);
+}
+
+/* ------- entries: the room's posts, opened by clicking through ------- */
+
+.entry-list {
+  display: grid;
+  gap: 1.15rem;
+  grid-column: 2;
+}
+
+.entry-card {
+  display: block;
+  padding: 1.3rem 1.5rem;
+  background: rgba(243, 227, 202, 0.05);
+  border-left: 3px solid rgba(167, 107, 153, 0.45);
+  transition: background 200ms ease, border-color 200ms ease, transform 200ms ease;
+}
+
+.entry-card:hover {
+  background: rgba(243, 227, 202, 0.09);
+  border-left-color: var(--violet);
+  transform: translateX(3px);
+}
+
+.entry-card h2 {
+  margin: 0 0 0.35rem;
+  font-size: 1.42rem;
+  line-height: 1.15;
+  font-weight: normal;
+  color: var(--parchment);
+}
+
+.entry-card:hover h2 {
+  color: var(--violet-bright);
+}
+
+.entry-meta {
+  margin: 0 0 0.55rem;
+  font-family: var(--caps);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #c9ad8b;
+}
+
+.entry-summary {
+  margin: 0;
+  color: #c9ad8b;
+  line-height: 1.7;
+}
+
+.entry-more {
+  display: inline-block;
+  margin-top: 0.75rem;
+  font-family: var(--caps);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #c9ad8b;
+}
+
+.entry-card:hover .entry-more {
+  color: var(--violet-bright);
+}
+
+.entry-empty {
+  padding: 1.3rem 1.5rem;
+  border-left: 3px solid rgba(167, 107, 153, 0.28);
+  color: #c9ad8b;
+  font-style: italic;
+}
+
+/* ------- a single entry, opened ------- */
+
+.entry-body {
+  max-width: 40rem;
+}
+
+.entry-body p {
+  color: #c9ad8b;
+  line-height: 1.8;
+  margin: 0 0 1.15rem;
+}
+
+.entry-body h2 {
+  margin: 2rem 0 0.7rem;
+  font-size: 1.3rem;
+  font-weight: normal;
+  color: var(--parchment);
+}
+
+.entry-body blockquote {
+  margin: 1.4rem 0;
+  padding-left: 1.2rem;
+  border-left: 2px solid rgba(167, 107, 153, 0.45);
+  font-style: italic;
+  color: var(--parch-dim);
+}
+
+@media (max-width: 900px) {
+  .entry-list {
+    grid-column: auto;
+  }
+}
+
+/* a featured statement in a summary box, where there's no handle to link */
+.desk-statement {
+  display: block;
+  font-size: 1.22rem;
+  line-height: 1.45;
+  color: var(--ink);
+  margin-bottom: 0.55rem;
+}
+
+.desk-statement::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 2px;
+  margin-top: 0.75rem;
+  background: linear-gradient(90deg, rgba(164, 95, 69, 0.85), rgba(167, 107, 153, 0.6), transparent);
+}
+
+/* ------- montage pieces: quoted matter, rules, centred prose ------- */
+
+.entry-body p.centered {
+  text-align: center;
+  max-width: 34rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.entry-body hr {
+  border: 0;
+  height: 1px;
+  width: 100%;
+  max-width: 34rem;
+  margin: 2.3rem auto;
+  background: linear-gradient(90deg, transparent, rgba(201, 148, 95, 0.55), rgba(167, 107, 153, 0.4), transparent);
+}
+
+.entry-body blockquote p {
+  color: #c9ad8b;
+  margin: 0 0 0.85rem;
+}
+
+.entry-body blockquote p:last-of-type {
+  margin-bottom: 0;
+}
+
+.entry-body blockquote cite {
+  display: block;
+  margin-top: 0.85rem;
+  font-size: 0.82rem;
+  font-style: italic;
+  color: #c9ad8b;
+}
+
+.entry-body blockquote cite::before {
+  content: "— ";
 }

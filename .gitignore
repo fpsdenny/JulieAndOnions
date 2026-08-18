@@ -1,0 +1,58 @@
+# ── secrets ───────────────────────────────────────────────────────────────────
+# This repository is public and serves a live site. Nothing here should ever
+# hold a credential. These patterns are a backstop, not a substitute for care.
+.env
+.env.*
+*.env
+secrets.*
+*secret*
+credentials*
+*.key
+*.pem
+*.p12
+*.pfx
+*.keystore
+config.local.*
+*.local.json
+.netrc
+
+# ── personal documents ────────────────────────────────────────────────────────
+# The resume source carries a phone number and a home address. It travels with
+# applications, never with the site. (A PDF scrubbed of both may be published
+# deliberately — that is why .pdf is not ignored here.)
+*.docx
+*.doc
+*.dotx
+*.odt
+
+# ── python ────────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+.Python
+*.egg-info/
+
+# ── editors and tooling ───────────────────────────────────────────────────────
+.vscode/
+.idea/
+.claude/
+*.swp
+*.swo
+*~
+.ropeproject/
+
+# ── operating system litter ───────────────────────────────────────────────────
+.DS_Store
+._*
+Thumbs.db
+ehthumbs.db
+desktop.ini
+$RECYCLE.BIN/
+
+# ── build and dependency directories, if any are ever introduced ─────────────
+node_modules/
+_site/
+.jekyll-cache/
+.sass-cache/
