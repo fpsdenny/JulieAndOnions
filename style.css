@@ -518,3 +518,326 @@ a:focus-visible {
     transition: none;
   }
 }
+
+/* ------- the restructure: the stand board, the workshop, the quiet door ------- */
+
+/* the host stand keeps a board of what's in motion */
+.stand-board {
+  margin: 0 0 2rem;
+}
+
+.stand-label {
+  display: block;
+  font-family: var(--caps);
+  text-transform: uppercase;
+  letter-spacing: 0.13em;
+  font-size: 0.66rem;
+  color: var(--ink-mut);
+  margin-bottom: 0.9rem;
+}
+
+.stand-board ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.8rem;
+}
+
+.stand-board li {
+  font-size: 0.97rem;
+  line-height: 1.62;
+  color: var(--ink-soft);
+  max-width: 25.5rem;
+}
+
+.stand-board .item-name {
+  color: var(--ink);
+}
+
+.stand-contact {
+  margin: 0;
+  font-family: var(--caps);
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  color: var(--ink-mut);
+}
+
+.stand-contact a {
+  color: var(--ink);
+  border-bottom: 1px solid rgba(107, 47, 92, 0.35);
+  padding-bottom: 1px;
+}
+
+.stand-contact a:hover {
+  color: var(--violet-deep);
+}
+
+/* stacked writeups in the section pages */
+.panel-stack {
+  display: grid;
+  gap: 1.15rem;
+  max-width: 44rem;
+}
+
+.panel p + p {
+  margin-top: 0.85rem;
+}
+
+.panel-meta {
+  margin: 0 0 0.8rem;
+  font-size: 0.8rem;
+  font-style: italic;
+  color: var(--parch-dim);
+}
+
+.panel .fine {
+  margin-top: 0.95rem;
+  font-size: 0.8rem;
+  font-style: italic;
+  color: var(--parch-dim);
+}
+
+.panel a {
+  color: var(--parchment);
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 1px;
+}
+
+/* further in — the door past the lamplight */
+.quiet-door {
+  margin-top: 3.2rem;
+  max-width: 44rem;
+  font-style: italic;
+  font-size: 0.92rem;
+  color: var(--parch-dim);
+}
+
+.quiet-door::before {
+  content: "";
+  display: block;
+  width: 72px;
+  height: 2px;
+  margin-bottom: 1.1rem;
+  background: linear-gradient(90deg, rgba(201, 148, 95, 0.6), rgba(167, 107, 153, 0.45), transparent);
+}
+
+.quiet-door a {
+  color: var(--parch-dim);
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 1px;
+}
+
+.quiet-door a:hover {
+  color: var(--violet-bright);
+}
+
+/* ------- section rooms: index box left, ways onward right ------- */
+
+.room-grid {
+  display: grid;
+  grid-template-columns: minmax(280px, 30rem) minmax(200px, 16rem);
+  column-gap: 3.2rem;
+  justify-content: start;
+  align-items: start;
+}
+
+.room-box {
+  grid-column: 1;
+  padding: 2rem 2.1rem 2.2rem;
+}
+
+.room-box .stand-label + .stand-label {
+  margin-top: 0;
+}
+
+.room-box .stand-label:not(:first-child) {
+  margin-top: 1.9rem;
+}
+
+.pinned-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.7rem;
+}
+
+.pinned-list li {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--ink-soft);
+  padding-left: 0.95rem;
+  position: relative;
+}
+
+.pinned-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.72em;
+  width: 5px;
+  height: 5px;
+  background: rgba(164, 95, 69, 0.75);
+}
+
+.pinned-list a {
+  color: var(--ink);
+  border-bottom: 1px solid rgba(107, 47, 92, 0.3);
+  padding-bottom: 1px;
+}
+
+.pinned-list a:hover {
+  color: var(--violet-deep);
+}
+
+.tag-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tag {
+  font-family: var(--caps);
+  font-size: 0.68rem;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--ink-mut);
+  border: 1px solid rgba(90, 60, 38, 0.28);
+  padding: 0.28rem 0.6rem;
+  line-height: 1;
+}
+
+.room-grid .right-column {
+  grid-column: 2;
+  padding-top: 0.4rem;
+  width: auto;
+  text-align: left;
+  justify-self: start;
+}
+
+.room-grid .path-item:hover {
+  transform: translateX(4px);
+}
+
+.room-grid .path-list {
+  gap: 1.7rem;
+}
+
+.room-grid .path-item h2 {
+  font-size: 1.5rem;
+}
+
+.site-footer a {
+  color: var(--parch-dim);
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 1px;
+}
+
+.site-footer a:hover {
+  color: var(--violet-bright);
+}
+
+@media (max-width: 900px) {
+  .room-grid {
+    grid-template-columns: 1fr;
+    row-gap: 2.4rem;
+  }
+
+  .room-box,
+  .room-grid .right-column {
+    grid-column: auto;
+    max-width: none;
+    width: auto;
+  }
+
+  .room-grid .right-column {
+    text-align: left;
+    justify-self: start;
+    padding-top: 0;
+  }
+}
+
+/* ------- subheaders: the rooms within a room, nested under the main array ------- */
+
+.sub-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem 1.6rem;
+  align-items: center;
+  max-width: 44rem;
+  margin: 0 0 2.6rem;
+  padding: 0 0 0.72rem 1.7rem;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--caps);
+  font-size: 0.72rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  position: relative;
+}
+
+/* the tie-line back up to the parent heading */
+.sub-nav::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.5em;
+  width: 1rem;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(201, 148, 95, 0.8), rgba(201, 148, 95, 0.12));
+}
+
+.page-hero + .sub-nav {
+  margin-top: -1.4rem;
+}
+
+.sub-nav a {
+  position: relative;
+  padding-bottom: 0.2rem;
+  color: var(--brass);
+}
+
+.sub-nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -0.1rem;
+  width: 0;
+  height: 1px;
+  background: var(--violet-bright);
+  transition: width 180ms ease;
+}
+
+.sub-nav a:hover {
+  color: var(--violet-bright);
+}
+
+.sub-nav a:hover::after {
+  width: 100%;
+}
+
+.sub-nav a.active {
+  color: var(--parchment);
+}
+
+.sub-nav a.active::after {
+  width: 100%;
+  background: var(--brass);
+}
+
+@media (max-width: 540px) {
+  .sub-nav {
+    gap: 0.6rem 1.05rem;
+    font-size: 0.68rem;
+    padding-left: 1.35rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sub-nav a::after {
+    transition: none;
+  }
+}
