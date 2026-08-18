@@ -691,25 +691,9 @@ a:focus-visible {
   color: var(--violet-deep);
 }
 
-.tag-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
+/* .tag-list and .tag were removed 2026-08-18 — no reason to sort anything yet.
+   Recover them from git history when there is. */
 
-.tag {
-  font-family: var(--caps);
-  font-size: 0.68rem;
-  letter-spacing: 0.11em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  border: 1px solid rgba(74, 56, 39, 0.45);
-  padding: 0.28rem 0.6rem;
-  line-height: 1;
-}
 
 .room-grid .right-column {
   grid-column: 2;
@@ -1044,4 +1028,175 @@ a:focus-visible {
 
 .entry-body blockquote cite::before {
   content: "— ";
+}
+
+/* ------- lists inside an entry: build sheets, ingredients, steps ------- */
+
+.entry-body ul {
+  list-style: none;
+  margin: 0 0 1.3rem;
+  padding: 0;
+  display: grid;
+  gap: 0.5rem;
+  max-width: 40rem;
+}
+
+.entry-body li {
+  position: relative;
+  padding-left: 1.1rem;
+  color: #c9ad8b;
+  line-height: 1.6;
+}
+
+.entry-body li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.68em;
+  width: 5px;
+  height: 5px;
+  background: rgba(201, 148, 95, 0.85);
+}
+
+.entry-body .list-label {
+  display: block;
+  margin: 1.9rem 0 0.9rem;
+  font-family: var(--caps);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.7rem;
+  color: var(--parchment);
+}
+
+.entry-body .list-label:first-child {
+  margin-top: 0;
+}
+
+/* ------- an epigraph in a summary box ------- */
+
+.desk-quote {
+  margin: 0;
+  color: var(--ink-soft);
+}
+
+.desk-quote p {
+  margin: 0;
+  font-style: italic;
+  font-size: 1.02rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+
+.desk-quote cite {
+  display: block;
+  margin-top: 0.7rem;
+  font-family: var(--caps);
+  font-style: normal;
+  font-size: 0.68rem;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.desk-quote cite::before {
+  content: "— ";
+}
+
+/* when the quote opens the box, give it the house rule beneath */
+.desk-feature > .desk-quote:first-child::after,
+.room-box > .desk-quote:first-child::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 2px;
+  margin-top: 1.1rem;
+  background: linear-gradient(90deg, rgba(164, 95, 69, 0.85), rgba(167, 107, 153, 0.6), transparent);
+}
+
+/* ------- photographs ------- */
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.4rem;
+  max-width: var(--max-width);
+}
+
+.gallery figure {
+  margin: 0;
+  position: relative;
+}
+
+/* the same pressed-paper treatment the host stand gets */
+.gallery img {
+  width: 100%;
+  aspect-ratio: 4 / 3;      /* even rows; the full frame is uncropped behind the link */
+  object-fit: cover;
+  display: block;
+  border: 1px solid rgba(30, 18, 9, 0.4);
+  box-shadow: 0 14px 30px var(--shadow-deep), 0 3px 10px rgba(8, 4, 2, 0.24);
+  transition: transform 260ms ease, box-shadow 260ms ease;
+}
+
+.gallery a:hover img,
+.gallery a:focus-visible img {
+  transform: translateY(-3px);
+  box-shadow: 0 20px 40px var(--shadow-deep), 0 4px 14px rgba(8, 4, 2, 0.3);
+}
+
+.gallery figcaption {
+  margin-top: 0.7rem;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: #c9ad8b;
+}
+
+.gallery .place {
+  display: block;
+  font-family: var(--caps);
+  font-size: 0.66rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--parchment);
+  margin-bottom: 0.25rem;
+}
+
+.gallery .entry-empty {
+  grid-column: 1 / -1;
+}
+
+.gallery code {
+  font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+  font-size: 0.86em;
+  font-style: normal;
+  color: var(--parchment);
+}
+
+/* a single photograph given the room to itself */
+.gallery.sequence {
+  grid-template-columns: 1fr;
+  max-width: 46rem;
+  gap: 3rem;
+}
+
+.gallery.sequence img {
+  aspect-ratio: auto;       /* a sequence shows each frame whole */
+  object-fit: contain;
+}
+
+@media (max-width: 540px) {
+  .gallery {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* links on the stand board */
+.stand-board a {
+  color: var(--ink);
+  border-bottom: 1px solid rgba(107, 47, 92, 0.35);
+  padding-bottom: 1px;
+}
+
+.stand-board a:hover {
+  color: var(--violet-deep);
 }

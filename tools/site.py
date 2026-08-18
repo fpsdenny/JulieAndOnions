@@ -15,23 +15,20 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # ---- the one place the nav and footer are defined ---------------------------
 
-NAV = [("Home", "/index.html"), ("Writing", "/writing.html"), ("Research", "/research.html"),
+NAV = [("Home", "/index.html"), ("Writing", "/writing.html"), ("Photography", "/photography.html"),
        ("Workshop", "/workshop.html"), ("Kitchen", "/kitchen.html"), ("About", "/about.html")]
 
 FOOTER = ('Julie and Onions · planted 2026 · contact — '
           '<a href="mailto:hayden@julieandonions.com">hayden@julieandonions.com</a>')
 
 # which nav item lights up for a given file
-ROOM_OF = {"writing": "/writing.html", "research": "/research.html", "workshop": "/workshop.html"}
+ROOM_OF = {"writing": "/writing.html", "workshop": "/workshop.html", "photography": "/photography.html"}
 SELF = {"essays.html": "/writing.html", "poems.html": "/writing.html"}
 
 ROOMS = {
     "writing":  dict(dir="writing",  listings=["essays.html", "writing.html"],
                      eyebrow="Julie and Onions · Writing", back=("/essays.html", "Back to the essays"),
                      more="Read the essay →"),
-    "research": dict(dir="research", listings=["research.html"],
-                     eyebrow="Julie and Onions · Research", back=("/research.html", "Back to the desk"),
-                     more="Read the note →"),
     "workshop": dict(dir="workshop", listings=["workshop.html"],
                      eyebrow="Julie and Onions · Workshop", back=("/workshop.html", "Back to the workshop"),
                      more="Read more →"),

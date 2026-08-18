@@ -32,6 +32,7 @@ folder and pages can be moved without rewriting their links.
     python tools/site.py check     dead links, unfinished [brackets], orphan pages
     python tools/site.py sync      push the nav and footer into every page
     python tools/site.py new writing "Title" [piece.md]
+    python tools/photos.py [source-folder]      add photographs
 
 **serve** — always preview through this rather than opening a file directly; the
 onion is a CSS mask and browsers refuse to load it over `file://`.
@@ -70,6 +71,20 @@ Two standing rules that no tooling can enforce:
 Everything in the repo is served, including `tools/`, so `tools/site.py` is
 readable at `julieandonions.com/tools/site.py`. It cannot execute — GitHub Pages
 serves static files only — and it holds nothing private.
+
+**photos** — reads originals from *outside* the repository (default
+`../photo-originals`), writes resized copies into `images/photos/`, and rebuilds
+the gallery on `photography.html`. It **strips every scrap of metadata** and verifies
+each file afterwards, refusing to continue if anything survives — a decade of
+geotagged photographs published together is a map of where you have been, and
+anything shot at home carries home's coordinates. Keep the originals out of the
+repo; git never forgets a large file.
+
+Captions go in `images/photos/captions.txt`, one line each:
+
+    kananaskis-01.jpg | Kananaskis, Alberta | Late September, going up.
+
+Filename, place, sentence. Re-run the script after editing to rebuild the page.
 
 ## House rules
 
