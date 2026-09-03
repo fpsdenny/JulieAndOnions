@@ -19,7 +19,7 @@ static HTML, one stylesheet, no build step. What you edit is what gets served.
 
     writing/              the entries themselves, one file per piece
     workshop/
-    research/             the house thesis lives here as thesis.html
+    research/
 
     style.css             the whole design — colours and type live in :root at the top
     images/               the onion photograph and its mask

@@ -86,6 +86,11 @@ a:focus-visible {
   display: flex;
   flex-direction: column;
   position: relative;
+  /* the onion's halo (.cut-figure::before) is deliberately wider than the
+     figure it lights; on a narrow phone that glow reached past the viewport
+     and produced a sideways scroll. Clip it rather than shrink it — the halo
+     is doing its job, it just should not be able to widen the page. */
+  overflow-x: clip;
 }
 
 .topbar {
@@ -1113,10 +1118,13 @@ a:focus-visible {
   background: linear-gradient(90deg, rgba(164, 95, 69, 0.85), rgba(167, 107, 153, 0.6), transparent);
 }
 
-/* an epigraph opening a column whose first section is a desk-feature:
-   match the breathing room a .stand-label gets in the same position */
-.room-box > .desk-quote:first-child + .desk-feature {
-  margin-top: 1.9rem;
+/* a status line under a room's pinned list: a note about what is coming,
+   set apart from the list so it does not read as another pinned item */
+.room-box .draft-note {
+  margin: 1.25rem 0 0;
+  font-size: 0.88rem;
+  font-style: italic;
+  color: var(--ink-soft);
 }
 
 /* ------- a paper: its state, and the download beside it ------- */
@@ -1252,4 +1260,53 @@ a:focus-visible {
 
 .stand-board a:hover {
   color: var(--violet-deep);
+}
+
+
+/* ------- the homepage is a composition, not a column of prose -------
+   It is the one page with no reading measure to protect, so above the
+   stacking breakpoint it is allowed to use the room it is given: the stand,
+   the path list and the gaps all grow, and the composition centres in the
+   viewport instead of sitting at the top of it. The onion deliberately does
+   NOT scale — it stays the size it was cut at, and the page opens up around
+   it. Scoped to body.home and to min-width 1100px — below that there is not
+   enough room for the wider margin, so the original layout applies and the
+   stacked layout below 900px is untouched. */
+
+@media (min-width: 1100px) {
+  .home .topbar,
+  .home .site-footer,
+  .home .home-main {
+    width: min(1500px, calc(100% - 10rem));
+  }
+
+  .home .home-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .home .home-grid {
+    /* the middle track never falls below the onion's cut size, so the figure
+       is never squeezed by the column the way it was between 1100 and 1280 */
+    grid-template-columns: minmax(340px, 0.95fr) minmax(236px, 0.42fr) minmax(230px, 0.6fr);
+    column-gap: clamp(2.4rem, 3.4vw, 4.6rem);
+  }
+
+  .home .home-grid .left-column {
+    max-width: 660px;
+    padding: 3rem 2.8rem 3.3rem;
+  }
+
+  .home .brand-title {
+    font-size: clamp(2.9rem, 4.6vw, 5.4rem);
+  }
+
+  .home .host-epigraph {
+    max-width: 28rem;
+  }
+
+  .home .home-grid .right-column {
+    width: min(100%, 330px);
+  }
 }
