@@ -1113,6 +1113,53 @@ a:focus-visible {
   background: linear-gradient(90deg, rgba(164, 95, 69, 0.85), rgba(167, 107, 153, 0.6), transparent);
 }
 
+/* ------- a paper: its state, and the download beside it ------- */
+
+.paper-status {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.55rem 1.6rem;
+  max-width: 44rem;
+  margin: -1.4rem 0 2.6rem;
+  padding: 0 0 0.9rem 1.7rem;
+  border-bottom: 1px solid var(--line);
+  position: relative;
+}
+
+.paper-status::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 1rem;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(201, 148, 95, 0.8), rgba(201, 148, 95, 0.12));
+}
+
+.paper-state,
+.paper-download {
+  font-family: var(--caps);
+  font-size: 0.72rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.paper-state {
+  color: #c9ad8b;
+}
+
+.paper-download {
+  color: var(--brass);
+  border-bottom: 1px solid rgba(201, 148, 95, 0.35);
+  padding-bottom: 0.18rem;
+}
+
+.paper-download:hover {
+  color: var(--parchment);
+  border-bottom-color: var(--parchment);
+}
+
 /* ------- photographs ------- */
 
 .gallery {

@@ -15,14 +15,15 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # ---- the one place the nav and footer are defined ---------------------------
 
-NAV = [("Home", "/index.html"), ("Writing", "/writing.html"), ("Photography", "/photography.html"),
+NAV = [("Home", "/index.html"), ("Writing", "/writing.html"), ("Research", "/research.html"),
        ("Workshop", "/workshop.html"), ("Kitchen", "/kitchen.html"), ("About", "/about.html")]
 
 FOOTER = ('Julie and Onions · planted 2026 · contact — '
           '<a href="mailto:hayden@julieandonions.com">hayden@julieandonions.com</a>')
 
 # which nav item lights up for a given file
-ROOM_OF = {"writing": "/writing.html", "workshop": "/workshop.html", "photography": "/photography.html"}
+ROOM_OF = {"writing": "/writing.html", "workshop": "/workshop.html",
+           "research": "/research.html", "about": "/about.html"}
 SELF = {"essays.html": "/writing.html", "poems.html": "/writing.html"}
 
 ROOMS = {
@@ -32,6 +33,9 @@ ROOMS = {
     "workshop": dict(dir="workshop", listings=["workshop.html"],
                      eyebrow="Julie and Onions · Workshop", back=("/workshop.html", "Back to the workshop"),
                      more="Read more →"),
+    "research": dict(dir="research", listings=["research.html"],
+                     eyebrow="Julie and Onions · Research", back=("/research.html", "Back to the research desk"),
+                     more="Read the paper →"),
 }
 
 
@@ -134,7 +138,7 @@ def check():
             if t.endswith((".html", ".css", ".svg", ".png", ".jpg")):
                 if not os.path.exists(os.path.join(ROOT, t.lstrip("/"))):
                     print("DEAD  %s -> %s" % (rel(path), t)); problems += 1
-        for m in re.finditer(r'\[[A-Za-z][^\]\n]{2,70}\]', re.sub(r'<!--.*?-->', '', src, flags=re.S)):
+        for m in re.finditer(r'\[[A-Za-z][^\]\n]{2,240}\]', re.sub(r'<!--.*?-->', '', src, flags=re.S)):
             print("TODO  %s : %s" % (rel(path), m.group(0))); problems += 1
         if 'name="robots" content="noindex"' in src:
             print("NOIX  %s is noindexed" % rel(path))

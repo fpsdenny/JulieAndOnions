@@ -13,11 +13,13 @@ static HTML, one stylesheet, no build step. What you edit is what gets served.
     about.html
     essays.html           sections inside Writing
     poems.html
-    journal.html          redirect kept for the old /journal.html URL
+    about/album.html      the photographs, nested inside About
+    journal.html          redirects kept for old URLs
+    photography.html
 
     writing/              the entries themselves, one file per piece
     workshop/
-    research/
+    research/             the house thesis lives here as thesis.html
 
     style.css             the whole design — colours and type live in :root at the top
     images/               the onion photograph and its mask
@@ -74,7 +76,7 @@ serves static files only — and it holds nothing private.
 
 **photos** — reads originals from *outside* the repository (default
 `../photo-originals`), writes resized copies into `images/photos/`, and rebuilds
-the gallery on `photography.html`. It **strips every scrap of metadata** and verifies
+the gallery on `about/album.html`. It **strips every scrap of metadata** and verifies
 each file afterwards, refusing to continue if anything survives — a decade of
 geotagged photographs published together is a map of where you have been, and
 anything shot at home carries home's coordinates. Keep the originals out of the

@@ -22,7 +22,7 @@ import os, re, sys, html
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT_DIR = os.path.join(ROOT, "images", "photos")
 CAPTIONS = os.path.join(OUT_DIR, "captions.txt")
-PAGE = os.path.join(ROOT, "photography.html")
+PAGE = os.path.join(ROOT, "about", "album.html")
 DEFAULT_SRC = os.path.join(os.path.dirname(ROOT), "photo-originals")
 EXTS = (".jpg", ".jpeg", ".png", ".tif", ".tiff", ".heic", ".webp")
 
@@ -133,7 +133,7 @@ def main(argv):
 
     write_page()
     n = len([f for f in os.listdir(OUT_DIR) if f.lower().endswith(".jpg")])
-    print("photography.html rebuilt — %d photograph(s) in the gallery" % n)
+    print("about/album.html rebuilt — %d photograph(s) in the gallery" % n)
 
 
 if __name__ == "__main__":
