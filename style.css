@@ -1113,6 +1113,12 @@ a:focus-visible {
   background: linear-gradient(90deg, rgba(164, 95, 69, 0.85), rgba(167, 107, 153, 0.6), transparent);
 }
 
+/* an epigraph opening a column whose first section is a desk-feature:
+   match the breathing room a .stand-label gets in the same position */
+.room-box > .desk-quote:first-child + .desk-feature {
+  margin-top: 1.9rem;
+}
+
 /* ------- a paper: its state, and the download beside it ------- */
 
 .paper-status {
