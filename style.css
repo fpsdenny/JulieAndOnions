@@ -1407,3 +1407,153 @@ a:focus-visible {
     animation: none;
   }
 }
+
+
+/* ------- the album's lightbox -------
+   Pure CSS: a panel per photograph, shown when the URL points at its id. The
+   arrows are ordinary links to the neighbouring ids and wrap around at both
+   ends; closing jumps back to the thumbnail you came from, so you land where
+   you left the grid rather than at the top of the page. The script at the foot
+   of album.html only adds the arrow keys, Escape and swipe. */
+
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  align-items: center;
+  justify-content: center;
+  padding: 3.4rem 4.6rem;
+  background: rgba(18, 10, 5, 0.93);
+}
+
+.lightbox:target {
+  display: flex;
+}
+
+/* the whole backdrop closes it, so a click anywhere off the photograph works */
+.lb-shade {
+  position: absolute;
+  inset: 0;
+  cursor: zoom-out;
+}
+
+.lightbox img {
+  position: relative;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border: 1px solid rgba(30, 18, 9, 0.5);
+  box-shadow: 0 26px 60px rgba(4, 2, 1, 0.6);
+}
+
+.lb-prev,
+.lb-next,
+.lb-close {
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--parch-dim);
+  font-family: var(--serif);
+  line-height: 1;
+  transition: color 180ms ease, background 180ms ease;
+}
+
+.lb-prev,
+.lb-next {
+  top: 0;
+  bottom: 0;
+  width: 4.6rem;
+  font-size: 2.6rem;
+}
+
+.lb-prev { left: 0; }
+.lb-next { right: 0; }
+
+.lb-prev span,
+.lb-next span {
+  display: block;
+  padding-bottom: 0.35em;
+}
+
+.lb-close {
+  top: 0;
+  right: 0;
+  width: 3.4rem;
+  height: 3.4rem;
+  font-size: 1.9rem;
+}
+
+.lb-prev:hover,
+.lb-next:hover,
+.lb-close:hover,
+.lb-prev:focus-visible,
+.lb-next:focus-visible,
+.lb-close:focus-visible {
+  color: var(--parchment);
+  background: rgba(234, 215, 185, 0.07);
+}
+
+.lb-count {
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  right: 0;
+  bottom: 1rem;
+  margin: 0;
+  text-align: center;
+  font-family: var(--caps);
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  color: var(--brass-dim);
+}
+
+.lb-caption {
+  position: absolute;
+  z-index: 2;
+  left: 4.6rem;
+  right: 4.6rem;
+  bottom: 2.6rem;
+  margin: 0;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #c9ad8b;
+}
+
+.lb-caption .place {
+  display: block;
+  font-family: var(--caps);
+  font-size: 0.66rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--parchment);
+  margin-bottom: 0.25rem;
+}
+
+/* the thumbnail says it opens rather than downloads */
+.gallery .shot {
+  display: block;
+  cursor: zoom-in;
+}
+
+@media (max-width: 700px) {
+  .lightbox {
+    padding: 3rem 0.6rem 4.2rem;
+  }
+
+  .lb-prev,
+  .lb-next {
+    width: 3rem;
+    font-size: 2.1rem;
+    align-items: flex-end;
+    padding-bottom: 1.2rem;
+  }
+
+  .lb-caption {
+    left: 1rem;
+    right: 1rem;
+    bottom: 2.4rem;
+  }
+}

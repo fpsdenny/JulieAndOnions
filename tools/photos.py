@@ -67,33 +67,165 @@ def read_captions():
     return caps
 
 
-def build_gallery():
+def sync_captions(files):
+    """Keep captions.txt in step with the folder, without ever losing your words.
+
+    Every photograph gets a line, in the order it appears in the gallery. Ones
+    you have not written yet arrive commented out, so you work down the file
+    uncommenting and filling in rather than typing filenames. Lines for
+    photographs that are no longer in the folder are moved to the bottom rather
+    than deleted, in case the caption is worth keeping for a re-import.
+    """
     caps = read_captions()
-    files = sorted(f for f in os.listdir(OUT_DIR) if f.lower().endswith(".jpg"))
-    if not files:
-        return '          <p class="entry-empty">The first photographs are being sorted.</p>'
-    out = []
+    lines = ["# One line per photograph:  filename | place | a sentence",
+             "#",
+             "# Uncomment a line and fill in the two fields to caption that photograph.",
+             "# Leave it commented and the alt text falls back to the date in the filename.",
+             "# Re-run this script afterwards to write the captions into the page.",
+             ""]
+    written = 0
     for f in files:
+        if f in caps and (caps[f][0] or caps[f][1]):
+            lines.append("%s | %s | %s" % (f, caps[f][0], caps[f][1]))
+            written += 1
+        else:
+            lines.append("# %s | place | a sentence" % f)
+    orphans = [f for f in caps if f not in files and (caps[f][0] or caps[f][1])]
+    if orphans:
+        lines += ["", "# --- no longer in the folder, kept in case you want them back ---"]
+        lines += ["# %s | %s | %s" % (f, caps[f][0], caps[f][1]) for f in sorted(orphans)]
+    open(CAPTIONS, "w", encoding="utf-8").write("\n".join(lines) + "\n")
+    return written, len(files) - written
+
+
+def build_gallery(files, caps):
+    """The grid of thumbnails. Each one links to its own lightbox panel below."""
+    out = []
+    for i, f in enumerate(files):
         place, note = caps.get(f, ("", ""))
         cap = ""
         if place or note:
             cap = ("\n            <figcaption>" +
                    (('<span class="place">%s</span>' % html.escape(place)) if place else "") +
                    html.escape(note) + "</figcaption>")
-        alt = html.escape(place or note or os.path.splitext(f)[0].replace("-", " "))
+        alt = html.escape(place or note or describe(f))
         out.append('          <figure>\n'
-                   '            <a href="/images/photos/%s"><img src="/images/photos/%s" alt="%s" loading="lazy"></a>%s\n'
-                   '          </figure>' % (f, f, alt, cap))
+                   '            <a class="shot" id="s%d" href="#p%d"><img src="/images/photos/%s" '
+                   'alt="%s" loading="lazy"></a>%s\n'
+                   '          </figure>' % (i, i, f, alt, cap))
     return "\n".join(out)
 
 
+def build_lightboxes(files, caps):
+    """One panel per photograph, hidden until the URL points at it.
+
+    This is the whole viewer: :target does the showing, the arrows are ordinary
+    links to the neighbouring ids, and closing jumps back to the thumbnail you
+    came from so you land where you left the grid. It works with no JavaScript
+    at all; the script at the foot of the page only adds the arrow keys, Escape
+    and swipe, which CSS cannot reach.
+    """
+    out, n = [], len(files)
+    for i, f in enumerate(files):
+        place, note = caps.get(f, ("", ""))
+        alt = html.escape(place or note or describe(f))
+        label = ""
+        if place or note:
+            label = ('\n          <p class="lb-caption">' +
+                     (('<span class="place">%s</span>' % html.escape(place)) if place else "") +
+                     html.escape(note) + "</p>")
+        out.append(
+            '        <div class="lightbox" id="p%d" role="dialog" aria-modal="true" aria-label="Photograph %d of %d">\n'
+            '          <a class="lb-shade" href="#s%d" aria-label="Close"></a>\n'
+            '          <a class="lb-prev" href="#p%d" aria-label="Previous photograph"><span>&#8249;</span></a>\n'
+            '          <img src="/images/photos/%s" alt="%s" loading="lazy">\n'
+            '          <a class="lb-next" href="#p%d" aria-label="Next photograph"><span>&#8250;</span></a>\n'
+            '          <a class="lb-close" href="#s%d" aria-label="Close">&#215;</a>\n'
+            '          <p class="lb-count">%d / %d</p>%s\n'
+            '        </div>'
+            % (i, i + 1, n, i, (i - 1) % n, f, alt, (i + 1) % n, i, i + 1, n, label))
+    return "\n".join(out)
+
+
+SCRIPT = """      <script>
+        /* Progressive enhancement only. The lightbox is CSS; this adds the arrow
+           keys, Escape and swipe, none of which CSS can reach. If it never runs,
+           the on-screen arrows still work and nothing looks broken. */
+        (function () {
+          function open_() { return document.querySelector('.lightbox:target'); }
+          function go(sel) {
+            var box = open_();
+            if (!box) return;
+            var link = box.querySelector(sel);
+            if (link) location.replace(link.getAttribute('href'));
+          }
+          document.addEventListener('keydown', function (e) {
+            if (!open_() || e.metaKey || e.ctrlKey || e.altKey) return;
+            if (e.key === 'ArrowLeft')  { e.preventDefault(); go('.lb-prev'); }
+            else if (e.key === 'ArrowRight') { e.preventDefault(); go('.lb-next'); }
+            else if (e.key === 'Escape')     { e.preventDefault(); go('.lb-close'); }
+          });
+          var startX = null;
+          document.addEventListener('touchstart', function (e) {
+            startX = open_() ? e.touches[0].clientX : null;
+          }, { passive: true });
+          document.addEventListener('touchend', function (e) {
+            if (startX === null) return;
+            var dx = e.changedTouches[0].clientX - startX;
+            startX = null;
+            if (Math.abs(dx) > 45) go(dx < 0 ? '.lb-next' : '.lb-prev');
+          }, { passive: true });
+        }());
+      </script>
+"""
+
+
+MONTHS = ("January", "February", "March", "April", "May", "June",
+          "July", "August", "September", "October", "November", "December")
+
+
+def describe(f):
+    """A readable fallback for alt text: the filenames carry their date, and
+    'Photograph, 25 September 2016' is worth rather more to someone using a
+    screen reader than '20160925 155817'. A real caption always wins."""
+    m = re.search(r'(19|20)(\d{2})(\d{2})(\d{2})', f)
+    if m:
+        year, mon, day = m.group(1) + m.group(2), int(m.group(3)), int(m.group(4))
+        if 1 <= mon <= 12 and 1 <= day <= 31:
+            return "Photograph, %d %s %s" % (day, MONTHS[mon - 1], year)
+    return "Photograph"
+
+
+START = "<!-- lightboxes:start -->"
+END = "<!-- lightboxes:end -->"
+
+
 def write_page():
+    """Rewrite the thumbnail grid and the lightbox panels in place.
+
+    Both regions are delimited, so this is idempotent: run it as often as you
+    like and anything you have written around them is left alone."""
+    files = sorted(f for f in os.listdir(OUT_DIR) if f.lower().endswith(".jpg"))
+    caps = read_captions()
+
     s = open(PAGE, encoding="utf-8").read()
+
     start = s.index('<section class="gallery"')
     start = s.index(">", start) + 1
     end = s.index("</section>", start)
-    s = s[:start] + "\n" + build_gallery() + "\n        " + s[end:]
+    grid = ('\n          <p class="entry-empty">The first photographs are being sorted.</p>\n        '
+            if not files else "\n" + build_gallery(files, caps) + "\n        ")
+    s = s[:start] + grid + s[end:]
+
+    block = (START + "\n" + build_lightboxes(files, caps) + "\n" + SCRIPT + "      " + END) \
+        if files else (START + "\n      " + END)
+    if START in s:
+        s = s[:s.index(START)] + block + s[s.index(END) + len(END):]
+    else:
+        anchor = "      </main>"
+        s = s[:s.index(anchor)] + "      " + block + "\n" + s[s.index(anchor):]
     open(PAGE, "w", encoding="utf-8").write(s)
+    return len(files)
 
 
 def main(argv):
@@ -126,14 +258,12 @@ def main(argv):
                 sys.exit("Stopping: %s still carries metadata. Do not publish it." % dst)
         print("\n%d processed, %d already present, %.1f MB added" % (done, skipped, total / 1e6))
 
-    if not os.path.exists(CAPTIONS):
-        with open(CAPTIONS, "w", encoding="utf-8") as f:
-            f.write("# filename | place | a sentence\n")
-        print("Wrote a caption file at images/photos/captions.txt")
+    files = sorted(f for f in os.listdir(OUT_DIR) if f.lower().endswith(".jpg"))
+    done, todo = sync_captions(files)
+    print("captions: %d written, %d still to write — images/photos/captions.txt" % (done, todo))
 
-    write_page()
-    n = len([f for f in os.listdir(OUT_DIR) if f.lower().endswith(".jpg")])
-    print("about/album.html rebuilt — %d photograph(s) in the gallery" % n)
+    n = write_page()
+    print("about/album.html rebuilt — %d photograph(s), each with its own lightbox panel" % n)
 
 
 if __name__ == "__main__":
