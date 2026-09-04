@@ -99,9 +99,15 @@ def sync_captions(files):
 
 
 def build_gallery(files, caps):
-    """The grid of thumbnails. Each one links to its own lightbox panel below."""
+    """The grid of thumbnails, and nothing else.
+
+    Each one is an ordinary link to the full-size file, so with JavaScript off
+    it does what it always did. The caption travels on the anchor as data, which
+    is what the viewer reads when it opens. There is no second copy of anything:
+    one <img> per photograph on the page, and one overlay shared by all of them.
+    """
     out = []
-    for i, f in enumerate(files):
+    for f in files:
         place, note = caps.get(f, ("", ""))
         cap = ""
         if place or note:
@@ -109,71 +115,111 @@ def build_gallery(files, caps):
                    (('<span class="place">%s</span>' % html.escape(place)) if place else "") +
                    html.escape(note) + "</figcaption>")
         alt = html.escape(place or note or describe(f))
+        data = ""
+        if place:
+            data += ' data-place="%s"' % html.escape(place)
+        if note:
+            data += ' data-note="%s"' % html.escape(note)
         out.append('          <figure>\n'
-                   '            <a class="shot" id="s%d" href="#p%d"><img src="/images/photos/%s" '
+                   '            <a class="shot" href="/images/photos/%s"%s><img src="/images/photos/%s" '
                    'alt="%s" loading="lazy"></a>%s\n'
-                   '          </figure>' % (i, i, f, alt, cap))
+                   '          </figure>' % (f, data, f, alt, cap))
     return "\n".join(out)
 
 
-def build_lightboxes(files, caps):
-    """One panel per photograph, hidden until the URL points at it.
-
-    This is the whole viewer: :target does the showing, the arrows are ordinary
-    links to the neighbouring ids, and closing jumps back to the thumbnail you
-    came from so you land where you left the grid. It works with no JavaScript
-    at all; the script at the foot of the page only adds the arrow keys, Escape
-    and swipe, which CSS cannot reach.
-    """
-    out, n = [], len(files)
-    for i, f in enumerate(files):
-        place, note = caps.get(f, ("", ""))
-        alt = html.escape(place or note or describe(f))
-        label = ""
-        if place or note:
-            label = ('\n          <p class="lb-caption">' +
-                     (('<span class="place">%s</span>' % html.escape(place)) if place else "") +
-                     html.escape(note) + "</p>")
-        out.append(
-            '        <div class="lightbox" id="p%d" role="dialog" aria-modal="true" aria-label="Photograph %d of %d">\n'
-            '          <a class="lb-shade" href="#s%d" aria-label="Close"></a>\n'
-            '          <a class="lb-prev" href="#p%d" aria-label="Previous photograph"><span>&#8249;</span></a>\n'
-            '          <img src="/images/photos/%s" alt="%s" loading="lazy">\n'
-            '          <a class="lb-next" href="#p%d" aria-label="Next photograph"><span>&#8250;</span></a>\n'
-            '          <a class="lb-close" href="#s%d" aria-label="Close">&#215;</a>\n'
-            '          <p class="lb-count">%d / %d</p>%s\n'
-            '        </div>'
-            % (i, i + 1, n, i, (i - 1) % n, f, alt, (i + 1) % n, i, i + 1, n, label))
-    return "\n".join(out)
-
-
-SCRIPT = """      <script>
-        /* Progressive enhancement only. The lightbox is CSS; this adds the arrow
-           keys, Escape and swipe, none of which CSS can reach. If it never runs,
-           the on-screen arrows still work and nothing looks broken. */
+VIEWER = """      <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photograph" tabindex="-1" hidden>
+        <button class="lb-shade" type="button" aria-label="Close"></button>
+        <button class="lb-prev" type="button" aria-label="Previous photograph"><span>&#8249;</span></button>
+        <img alt="">
+        <button class="lb-next" type="button" aria-label="Next photograph"><span>&#8250;</span></button>
+        <button class="lb-close" type="button" aria-label="Close">&#215;</button>
+        <p class="lb-count"></p>
+        <p class="lb-caption"></p>
+      </div>
+      <script>
+        /* One overlay, shared by every photograph. With JavaScript off the
+           thumbnails stay ordinary links to the full-size files, which is what
+           they were before this existed. */
         (function () {
-          function open_() { return document.querySelector('.lightbox:target'); }
-          function go(sel) {
-            var box = open_();
-            if (!box) return;
-            var link = box.querySelector(sel);
-            if (link) location.replace(link.getAttribute('href'));
+          var box = document.getElementById('lightbox');
+          if (!box) return;
+          var shots = [].slice.call(document.querySelectorAll('.gallery .shot'));
+          if (!shots.length) return;
+
+          var img = box.querySelector('img'),
+              count = box.querySelector('.lb-count'),
+              caption = box.querySelector('.lb-caption'),
+              at = 0, opener = null;
+
+          function show(i) {
+            at = (i + shots.length) % shots.length;
+            var a = shots[at], place = a.dataset.place || '', note = a.dataset.note || '';
+            img.src = a.getAttribute('href');
+            img.alt = a.querySelector('img').alt;
+            count.textContent = (at + 1) + ' / ' + shots.length;
+            caption.innerHTML = '';
+            if (place) {
+              var s = document.createElement('span');
+              s.className = 'place';
+              s.textContent = place;
+              caption.appendChild(s);
+            }
+            if (note) caption.appendChild(document.createTextNode(note));
+            box.setAttribute('aria-label', 'Photograph ' + (at + 1) + ' of ' + shots.length);
+            /* hold the neighbours in cache so stepping does not flash */
+            [-1, 1].forEach(function (d) {
+              var n = shots[(at + d + shots.length) % shots.length];
+              new Image().src = n.getAttribute('href');
+            });
           }
-          document.addEventListener('keydown', function (e) {
-            if (!open_() || e.metaKey || e.ctrlKey || e.altKey) return;
-            if (e.key === 'ArrowLeft')  { e.preventDefault(); go('.lb-prev'); }
-            else if (e.key === 'ArrowRight') { e.preventDefault(); go('.lb-next'); }
-            else if (e.key === 'Escape')     { e.preventDefault(); go('.lb-close'); }
+
+          function open_(i, from) {
+            opener = from || null;
+            show(i);
+            box.hidden = false;
+            document.documentElement.style.overflow = 'hidden';
+            /* focus the dialog itself, not a control: programmatic focus on a
+               tabindex="-1" element moves the keyboard in without painting a
+               focus ring down one edge of the screen */
+            box.focus();
+          }
+
+          function close_() {
+            box.hidden = true;
+            img.removeAttribute('src');
+            document.documentElement.style.overflow = '';
+            if (opener) { opener.focus(); opener = null; }
+          }
+
+          shots.forEach(function (a, i) {
+            a.addEventListener('click', function (e) {
+              if (e.metaKey || e.ctrlKey || e.shiftKey || e.button) return;
+              e.preventDefault();
+              open_(i, a);
+            });
           });
+
+          box.querySelector('.lb-prev').addEventListener('click', function () { show(at - 1); });
+          box.querySelector('.lb-next').addEventListener('click', function () { show(at + 1); });
+          box.querySelector('.lb-close').addEventListener('click', close_);
+          box.querySelector('.lb-shade').addEventListener('click', close_);
+
+          document.addEventListener('keydown', function (e) {
+            if (box.hidden || e.metaKey || e.ctrlKey || e.altKey) return;
+            if (e.key === 'ArrowLeft')       { e.preventDefault(); show(at - 1); }
+            else if (e.key === 'ArrowRight') { e.preventDefault(); show(at + 1); }
+            else if (e.key === 'Escape')     { e.preventDefault(); close_(); }
+          });
+
           var startX = null;
-          document.addEventListener('touchstart', function (e) {
-            startX = open_() ? e.touches[0].clientX : null;
+          box.addEventListener('touchstart', function (e) {
+            startX = e.touches[0].clientX;
           }, { passive: true });
-          document.addEventListener('touchend', function (e) {
+          box.addEventListener('touchend', function (e) {
             if (startX === null) return;
             var dx = e.changedTouches[0].clientX - startX;
             startX = null;
-            if (Math.abs(dx) > 45) go(dx < 0 ? '.lb-next' : '.lb-prev');
+            if (Math.abs(dx) > 45) show(dx < 0 ? at + 1 : at - 1);
           }, { passive: true });
         }());
       </script>
@@ -217,8 +263,7 @@ def write_page():
             if not files else "\n" + build_gallery(files, caps) + "\n        ")
     s = s[:start] + grid + s[end:]
 
-    block = (START + "\n" + build_lightboxes(files, caps) + "\n" + SCRIPT + "      " + END) \
-        if files else (START + "\n      " + END)
+    block = START + "\n" + VIEWER + "      " + END if files else START + "\n      " + END
     if START in s:
         s = s[:s.index(START)] + block + s[s.index(END) + len(END):]
     else:
@@ -263,7 +308,7 @@ def main(argv):
     print("captions: %d written, %d still to write — images/photos/captions.txt" % (done, todo))
 
     n = write_page()
-    print("about/album.html rebuilt — %d photograph(s), each with its own lightbox panel" % n)
+    print("about/album.html rebuilt — %d photograph(s) in the gallery, one shared viewer" % n)
 
 
 if __name__ == "__main__":
