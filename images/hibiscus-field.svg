@@ -1,0 +1,149 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="240" viewBox="0 0 200 240">
+  <!-- SCATTER tile for the drift that enters over the empty top right of the About page.
+       Pink hibiscus, the flower Hayden keeps. Five broad petals, a deep throat and
+       the staminal column that identifies the species. Palette: petals #c9a3bd,
+       throat #6b2f5c, column #ead7b9, anthers #c9945f, stem and leaves #8f7252.
+       Each group is one bloom: translate places it, scale sizes it, rotate turns it,
+       opacity sets how near it reads. Move them freely; the tile must stay 200 by 240
+       so the CSS drift keeps looping seamlessly. -->
+  <g>
+    <g transform="translate(28 44) scale(0.85) rotate(-14)" opacity="0.78">
+      <path d="M 0 5.2 L 0 12.6" stroke="#8f7252" stroke-width="1.1" stroke-linecap="round"/>
+      <path d="M -0.4 9 C -4 8.4 -6.2 6.6 -6.6 4.2 C -3.4 3.8 -1 5.4 -0.4 9 Z" fill="#8f7252"/>
+      <path d="M 0.4 10.4 C 4 9.8 6.2 8 6.6 5.6 C 3.4 5.2 1 6.8 0.4 10.4 Z" fill="#8f7252"/>
+      <g fill="#c9a3bd">
+        <ellipse rx="4.3" ry="4.8" cy="-3.9"/>
+        <ellipse rx="4.3" ry="4.8" cy="-3.9" transform="rotate(72)"/>
+        <ellipse rx="4.3" ry="4.8" cy="-3.9" transform="rotate(144)"/>
+        <ellipse rx="4.3" ry="4.8" cy="-3.9" transform="rotate(216)"/>
+        <ellipse rx="4.3" ry="4.8" cy="-3.9" transform="rotate(288)"/>
+      </g>
+      <circle r="2.5" fill="#6b2f5c"/>
+      <path d="M 0 0 L 5.6 5.6" stroke="#ead7b9" stroke-width="0.95" stroke-linecap="round"/>
+      <g fill="#c9945f">
+        <circle cx="6.4" cy="5.2" r="0.85"/>
+        <circle cx="5.2" cy="6.4" r="0.85"/>
+        <circle cx="6.9" cy="6.6" r="0.8"/>
+      </g>
+    </g>
+    <g transform="translate(126 26) scale(0.52) rotate(30)" opacity="0.5">
+      <path d="M 0 5.2 L 0 12.6" stroke="#8f7252" stroke-width="1.1" stroke-linecap="round"/>
+      <path d="M -0.4 9 C -4 8.4 -6.2 6.6 -6.6 4.2 C -3.4 3.8 -1 5.4 -0.4 9 Z" fill="#8f7252"/>
+      <path d="M 0.4 10.4 C 4 9.8 6.2 8 6.6 5.6 C 3.4 5.2 1 6.8 0.4 10.4 Z" fill="#8f7252"/>
+      <g fill="#c9a3bd">
+        <ellipse rx="4.3" ry="4.8" cy="-3.9"/>
+        <ellipse rx="4.3" ry="4.8" cy="-3.9" transform="rotate(72)"/>
+        <ellipse rx="4.3" ry="4.8" cy="-3.9" transform="rotate(144)"/>
+        <ellipse rx="4.3" ry="4.8" cy="-3.9" transform="rotate(216)"/>
+        <ellipse rx="4.3" ry="4.8" cy="-3.9" transform="rotate(288)"/>
+      </g>
+      <circle r="2.5" fill="#6b2f5c"/>
+      <path d="M 0 0 L 5.6 5.6" stroke="#ead7b9" stroke-width="0.95" stroke-linecap="round"/>
+      <g fill="#c9945f">
+        <circle cx="6.4" cy="5.2" r="0.85"/>
+        <circle cx="5.2" cy="6.4" r="0.85"/>
+        <circle cx="6.9" cy="6.6" r="0.8"/>
+      </g>
+    </g>
+    <g transform="translate(74 132) scale(0.66) rotate(-38)" opacity="0.64">
+      <path d="M 0 5.2 L 0 12.6" stroke="#8f7252" stroke-width="1.1" stroke-linecap="round"/>
+      <path d="M -0.4 9 C -4 8.4 -6.2 6.6 -6.6 4.2 C -3.4 3.8 -1 5.4 -0.4 9 Z" fill="#8f7252"/>
+      <path d="M 0.4 10.4 C 4 9.8 6.2 8 6.6 5.6 C 3.4 5.2 1 6.8 0.4 10.4 Z" fill="#8f7252"/>
+      <g fill="#c9a3bd">
+        <ellipse rx="4.3" ry="4.8" cy="-3.9"/>
+        <ellipse rx="4.3" ry="4.8" cy="-3.9" transform="rotate(72)"/>
+        <ellipse rx="4.3" ry="4.8" cy="-3.9" transform="rotate(144)"/>
+        <ellipse rx="4.3" ry="4.8" cy="-3.9" transform="rotate(216)"/>
+        <ellipse rx="4.3" ry="4.8" cy="-3.9" transform="rotate(288)"/>
+      </g>
+      <circle r="2.5" fill="#6b2f5c"/>
+      <path d="M 0 0 L 5.6 5.6" stroke="#ead7b9" stroke-width="0.95" stroke-linecap="round"/>
+      <g fill="#c9945f">
+        <circle cx="6.4" cy="5.2" r="0.85"/>
+        <circle cx="5.2" cy="6.4" r="0.85"/>
+        <circle cx="6.9" cy="6.6" r="0.8"/>
+      </g>
+    </g>
+    <g transform="translate(168 108) scale(0.42) rotate(12)" opacity="0.44">
+      <path d="M 0 5.2 L 0 12.6" stroke="#8f7252" stroke-width="1.1" stroke-linecap="round"/>
+      <path d="M -0.4 9 C -4 8.4 -6.2 6.6 -6.6 4.2 C -3.4 3.8 -1 5.4 -0.4 9 Z" fill="#8f7252"/>
+      <path d="M 0.4 10.4 C 4 9.8 6.2 8 6.6 5.6 C 3.4 5.2 1 6.8 0.4 10.4 Z" fill="#8f7252"/>
+      <g fill="#c9a3bd">
+        <ellipse rx="4.3" ry="4.8" cy="-3.9"/>
+        <ellipse rx="4.3" ry="4.8" cy="-3.9" transform="rotate(72)"/>
+        <ellipse rx="4.3" ry="4.8" cy="-3.9" transform="rotate(144)"/>
+        <ellipse rx="4.3" ry="4.8" cy="-3.9" transform="rotate(216)"/>
+        <ellipse rx="4.3" ry="4.8" cy="-3.9" transform="rotate(288)"/>
+      </g>
+      <circle r="2.5" fill="#6b2f5c"/>
+      <path d="M 0 0 L 5.6 5.6" stroke="#ead7b9" stroke-width="0.95" stroke-linecap="round"/>
+      <g fill="#c9945f">
+        <circle cx="6.4" cy="5.2" r="0.85"/>
+        <circle cx="5.2" cy="6.4" r="0.85"/>
+        <circle cx="6.9" cy="6.6" r="0.8"/>
+      </g>
+    </g>
+    <g transform="translate(18 186) scale(0.56) rotate(52)" opacity="0.54">
+      <path d="M 0 5.2 L 0 12.6" stroke="#8f7252" stroke-width="1.1" stroke-linecap="round"/>
+      <path d="M -0.4 9 C -4 8.4 -6.2 6.6 -6.6 4.2 C -3.4 3.8 -1 5.4 -0.4 9 Z" fill="#8f7252"/>
+      <path d="M 0.4 10.4 C 4 9.8 6.2 8 6.6 5.6 C 3.4 5.2 1 6.8 0.4 10.4 Z" fill="#8f7252"/>
+      <g fill="#c9a3bd">
+        <ellipse rx="4.3" ry="4.8" cy="-3.9"/>
+        <ellipse rx="4.3" ry="4.8" cy="-3.9" transform="rotate(72)"/>
+        <ellipse rx="4.3" ry="4.8" cy="-3.9" transform="rotate(144)"/>
+        <ellipse rx="4.3" ry="4.8" cy="-3.9" transform="rotate(216)"/>
+        <ellipse rx="4.3" ry="4.8" cy="-3.9" transform="rotate(288)"/>
+      </g>
+      <circle r="2.5" fill="#6b2f5c"/>
+      <path d="M 0 0 L 5.6 5.6" stroke="#ead7b9" stroke-width="0.95" stroke-linecap="round"/>
+      <g fill="#c9945f">
+        <circle cx="6.4" cy="5.2" r="0.85"/>
+        <circle cx="5.2" cy="6.4" r="0.85"/>
+        <circle cx="6.9" cy="6.6" r="0.8"/>
+      </g>
+    </g>
+    <g transform="translate(146 206) scale(0.74) rotate(-20)" opacity="0.58">
+      <path d="M 0 5.2 L 0 12.6" stroke="#8f7252" stroke-width="1.1" stroke-linecap="round"/>
+      <path d="M -0.4 9 C -4 8.4 -6.2 6.6 -6.6 4.2 C -3.4 3.8 -1 5.4 -0.4 9 Z" fill="#8f7252"/>
+      <path d="M 0.4 10.4 C 4 9.8 6.2 8 6.6 5.6 C 3.4 5.2 1 6.8 0.4 10.4 Z" fill="#8f7252"/>
+      <g fill="#c9a3bd">
+        <ellipse rx="4.3" ry="4.8" cy="-3.9"/>
+        <ellipse rx="4.3" ry="4.8" cy="-3.9" transform="rotate(72)"/>
+        <ellipse rx="4.3" ry="4.8" cy="-3.9" transform="rotate(144)"/>
+        <ellipse rx="4.3" ry="4.8" cy="-3.9" transform="rotate(216)"/>
+        <ellipse rx="4.3" ry="4.8" cy="-3.9" transform="rotate(288)"/>
+      </g>
+      <circle r="2.5" fill="#6b2f5c"/>
+      <path d="M 0 0 L 5.6 5.6" stroke="#ead7b9" stroke-width="0.95" stroke-linecap="round"/>
+      <g fill="#c9945f">
+        <circle cx="6.4" cy="5.2" r="0.85"/>
+        <circle cx="5.2" cy="6.4" r="0.85"/>
+        <circle cx="6.9" cy="6.6" r="0.8"/>
+      </g>
+    </g>
+    <g transform="translate(104 74) scale(0.32) rotate(66)" opacity="0.34">
+      <path d="M 0 5.2 L 0 12.6" stroke="#8f7252" stroke-width="1.1" stroke-linecap="round"/>
+      <path d="M -0.4 9 C -4 8.4 -6.2 6.6 -6.6 4.2 C -3.4 3.8 -1 5.4 -0.4 9 Z" fill="#8f7252"/>
+      <path d="M 0.4 10.4 C 4 9.8 6.2 8 6.6 5.6 C 3.4 5.2 1 6.8 0.4 10.4 Z" fill="#8f7252"/>
+      <g fill="#c9a3bd">
+        <ellipse rx="4.3" ry="4.8" cy="-3.9"/>
+        <ellipse rx="4.3" ry="4.8" cy="-3.9" transform="rotate(72)"/>
+        <ellipse rx="4.3" ry="4.8" cy="-3.9" transform="rotate(144)"/>
+        <ellipse rx="4.3" ry="4.8" cy="-3.9" transform="rotate(216)"/>
+        <ellipse rx="4.3" ry="4.8" cy="-3.9" transform="rotate(288)"/>
+      </g>
+      <circle r="2.5" fill="#6b2f5c"/>
+      <path d="M 0 0 L 5.6 5.6" stroke="#ead7b9" stroke-width="0.95" stroke-linecap="round"/>
+      <g fill="#c9945f">
+        <circle cx="6.4" cy="5.2" r="0.85"/>
+        <circle cx="5.2" cy="6.4" r="0.85"/>
+        <circle cx="6.9" cy="6.6" r="0.8"/>
+      </g>
+    </g>
+    <ellipse cx="96" cy="168" rx="3.2" ry="1.5" fill="#c9a3bd" opacity="0.38" transform="rotate(-34 96 168)"/>
+    <ellipse cx="190" cy="58" rx="2.6" ry="1.2" fill="#c9a3bd" opacity="0.3" transform="rotate(22 190 58)"/>
+    <ellipse cx="52" cy="214" rx="2.9" ry="1.4" fill="#c9a3bd" opacity="0.28" transform="rotate(58 52 214)"/>
+    <ellipse cx="154" cy="150" rx="2.2" ry="1.05" fill="#c9a3bd" opacity="0.25" transform="rotate(-12 154 150)"/>
+    <ellipse cx="8" cy="110" rx="2.6" ry="1.25" fill="#c9a3bd" opacity="0.26" transform="rotate(40 8 110)"/>
+  </g>
+</svg>

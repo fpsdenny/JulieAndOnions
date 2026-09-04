@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="220" height="220" viewBox="-110 -110 220 220">
+  <!-- Hayden's hibiscus, drawn from the photographs of the plant itself: coral pink
+       petals paling toward a ruffled edge, fine radiating veins, a deep crimson eye,
+       and the staminal column pushed forward with its yellow anthers and five red
+       stigmas at the tip. One bloom, meant to hover. -->
+  <defs>
+    <radialGradient id="petal" cx="0" cy="0" r="72" gradientUnits="userSpaceOnUse">
+      <stop offset="0.06" stop-color="#cf6274"/>
+      <stop offset="0.32" stop-color="#e2818f"/>
+      <stop offset="0.68" stop-color="#eda3aa"/>
+      <stop offset="1" stop-color="#f4c3c4"/>
+    </radialGradient>
+    <radialGradient id="eye" cx="0" cy="0" r="20" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#6d1622"/>
+      <stop offset="0.55" stop-color="#8b2432"/>
+      <stop offset="1" stop-color="#c05f6e" stop-opacity="0"/>
+    </radialGradient>
+    <g id="petal-shape">
+      <path d="M 0 -3
+               C -21 -12, -38 -30, -37 -50
+               C -36 -61, -23 -69, -11 -66
+               C -6 -65, -2 -67, 0 -69
+               C 2 -67, 6 -65, 11 -66
+               C 23 -69, 36 -61, 37 -50
+               C 38 -30, 21 -12, 0 -3 Z" fill="url(#petal)"/>
+      <g stroke="#f8dadb" stroke-width="0.75" stroke-linecap="round" fill="none" opacity="0.5">
+        <path d="M 0 -8 C 0 -28, 0 -46, 0 -63"/>
+        <path d="M -2 -8 C -9 -26, -16 -40, -22 -55"/>
+        <path d="M 2 -8 C 9 -26, 16 -40, 22 -55"/>
+        <path d="M -3 -7 C -14 -22, -24 -32, -31 -45"/>
+        <path d="M 3 -7 C 14 -22, 24 -32, 31 -45"/>
+      </g>
+    </g>
+  </defs>
+
+  <g>
+    <use href="#petal-shape" transform="rotate(0)"/>
+    <use href="#petal-shape" transform="rotate(72)"/>
+    <use href="#petal-shape" transform="rotate(144)"/>
+    <use href="#petal-shape" transform="rotate(216)"/>
+    <use href="#petal-shape" transform="rotate(288)"/>
+  </g>
+
+  <circle r="16" fill="url(#eye)"/>
+  <circle r="7" fill="#6d1622"/>
+
+  <!-- The staminal column, pushed forward and aimed at the bottom left corner of
+       the page: it is the thing the pollen comes off, so it should point the way
+       the pollen goes. Mirroring the group is enough, the petals are radial. -->
+  <g transform="scale(-1 1)">
+    <path d="M 2 4 L 40 46" stroke="#f2e6d5" stroke-width="3.4" stroke-linecap="round"/>
+    <path d="M 2 4 L 40 46" stroke="#cbb99e" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
+    <g fill="#e3b854">
+      <circle cx="44" cy="43" r="3.1"/>
+      <circle cx="39" cy="50" r="3"/>
+      <circle cx="46" cy="50" r="2.7"/>
+      <circle cx="35" cy="44" r="2.4"/>
+      <circle cx="43" cy="55" r="2.3"/>
+    </g>
+    <g fill="#b8383c">
+      <circle cx="49" cy="46" r="1.7"/>
+      <circle cx="47" cy="55" r="1.6"/>
+      <circle cx="52" cy="51" r="1.5"/>
+    </g>
+  </g>
+</svg>
