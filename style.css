@@ -1410,14 +1410,15 @@ a:focus-visible {
 
 
 /* ------- the album's lightbox -------
-   Pure CSS: a panel per photograph, shown when the URL points at its id. The
-   arrows are ordinary links to the neighbouring ids and wrap around at both
-   ends; closing jumps back to the thumbnail you came from, so you land where
-   you left the grid rather than at the top of the page. The script at the foot
-   of album.html only adds the arrow keys, Escape and swipe. */
+   One overlay shared by every photograph, filled in as you step through, so the
+   page carries a single copy of each image and nothing is duplicated. The
+   controls are buttons rather than links: there is no navigation happening, and
+   the URL should not fill with fragments as you look at a hundred photographs.
+   Closing puts focus back on the thumbnail you opened. With JavaScript off the
+   thumbnails stay ordinary links to the full-size files. */
 
 .lightbox {
-  display: none;
+  display: flex;
   position: fixed;
   inset: 0;
   z-index: 40;
@@ -1427,12 +1428,21 @@ a:focus-visible {
   background: rgba(18, 10, 5, 0.93);
 }
 
-.lightbox:target {
-  display: flex;
+/* [hidden] is what closes it; the script only ever flips that one attribute */
+.lightbox[hidden] {
+  display: none;
+}
+
+.lightbox:focus {
+  outline: none;
 }
 
 /* the whole backdrop closes it, so a click anywhere off the photograph works */
 .lb-shade {
+  appearance: none;
+  border: 0;
+  padding: 0;
+  background: transparent;
   position: absolute;
   inset: 0;
   cursor: zoom-out;
@@ -1450,6 +1460,11 @@ a:focus-visible {
 .lb-prev,
 .lb-next,
 .lb-close {
+  appearance: none;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
   position: absolute;
   z-index: 2;
   display: flex;
@@ -1508,6 +1523,10 @@ a:focus-visible {
   font-size: 0.68rem;
   letter-spacing: 0.16em;
   color: var(--brass-dim);
+}
+
+.lb-caption:empty {
+  display: none;
 }
 
 .lb-caption {
