@@ -1310,3 +1310,100 @@ a:focus-visible {
     width: min(100%, 330px);
   }
 }
+
+
+/* ------- About: full-width panels, one hibiscus, and its pollen -------
+   The panels run the whole width of the page and keep their plain violet rule.
+   The flower is a single bloom hovering in the empty top right, drawn from the
+   plant itself, with its staminal column aimed at the bottom left corner; the
+   pollen coming off it drifts leftward across the top of the page. Slow and
+   quiet on purpose: noticed second, after the writing. */
+
+.panel-stack,
+.panel {
+  max-width: none;
+}
+
+/* one bloom, hovering in the empty top right. Drawn from the plant itself:
+   coral petals paling to a ruffled edge, the crimson eye, and the staminal column
+   with its anthers. It drifts on a long slow cycle and never quite repeats the
+   same angle, so it reads as floating rather than pinned. Its right edge lines up
+   with the text column at any width. */
+.about .site-shell::after {
+  content: "";
+  position: absolute;
+  top: 0.6rem;
+  right: max(2rem, calc(50% - var(--max-width) / 2));
+  width: clamp(132px, 21vw, 310px);
+  aspect-ratio: 1;
+  z-index: -1;
+  pointer-events: none;
+  background: url("images/hibiscus-bloom.svg") no-repeat center / contain;
+  filter: drop-shadow(0 22px 30px rgba(8, 4, 2, 0.5));
+  opacity: 0.88;
+  animation: hibiscus-hover 15s ease-in-out infinite alternate;
+}
+
+/* on a narrow screen the nav wraps to two lines, so the bloom drops below it and
+   sits beside the title instead of behind the menu. The pollen also has far less
+   width to thin out across, so it is held further back or it reads as a starfield. */
+@media (max-width: 900px) {
+  .about .site-shell::after {
+    top: 5.2rem;
+    opacity: 0.72;
+  }
+
+  .about .site-shell::before {
+    animation: pollen-drift 120s linear infinite,
+               pollen-breathe-quiet 19s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes pollen-breathe-quiet {
+  from { opacity: 0.16; }
+  to   { opacity: 0.3; }
+}
+
+/* the pollen: off the anthers and away to the left, thinning as it goes.
+   Two tiles of different widths travel different distances in the same time,
+   so the motes separate as they cross and the stream never repeats. */
+.about .site-shell::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 360px;
+  z-index: -2;
+  pointer-events: none;
+  background:
+    url("images/pollen.svg") repeat-x 0 0 / 320px 300px,
+    url("images/pollen-far.svg") repeat-x 0 0 / 520px 300px;
+  /* densest beside the flower, gone before it reaches the far edge */
+  -webkit-mask-image: linear-gradient(to left, #000 2%, rgba(0, 0, 0, 0.6) 30%, transparent 92%);
+  mask-image: linear-gradient(to left, #000 2%, rgba(0, 0, 0, 0.6) 30%, transparent 92%);
+  animation: pollen-drift 120s linear infinite,
+             pollen-breathe 19s ease-in-out infinite alternate;
+}
+
+@keyframes pollen-drift {
+  from { background-position: 0 0, 0 0; }
+  to   { background-position: -320px 0, -1040px 0; }
+}
+
+@keyframes pollen-breathe {
+  from { opacity: 0.7; }
+  to   { opacity: 1; }
+}
+
+@keyframes hibiscus-hover {
+  from { transform: translate3d(0, 9px, 0) rotate(-2.2deg); }
+  to   { transform: translate3d(-11px, -13px, 0) rotate(2.6deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about .site-shell::before,
+  .about .site-shell::after {
+    animation: none;
+  }
+}

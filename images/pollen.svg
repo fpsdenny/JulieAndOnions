@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="300" viewBox="0 0 320 300">
+  <!-- NEAR drift. Pollen off the hibiscus: gold motes, 26 of them, scattered by hand-seeded
+       random so the tile never reads as a grid. The tile must stay 320 wide for the
+       drift to loop seamlessly. -->
+    <circle cx="145.0" cy="167.6" r="2.47" fill="#f0d79b" opacity="0.58"/>
+    <circle cx="162.5" cy="175.7" r="1.21" fill="#e3b854" opacity="0.61"/>
+    <circle cx="201.0" cy="236.1" r="1.06" fill="#e3b854" opacity="0.5"/>
+    <circle cx="30.7" cy="241.0" r="2.08" fill="#f0d79b" opacity="0.37"/>
+    <circle cx="312.4" cy="286.6" r="2.01" fill="#f0d79b" opacity="0.66"/>
+    <circle cx="51.8" cy="7.4" r="1.8" fill="#f0d79b" opacity="0.38"/>
+    <circle cx="62.1" cy="74.1" r="0.95" fill="#e3b854" opacity="0.58"/>
+    <circle cx="141.2" cy="250.7" r="1.78" fill="#f0d79b" opacity="0.67"/>
+    <circle cx="159.9" cy="197.8" r="1.68" fill="#e3b854" opacity="0.49"/>
+    <circle cx="317.3" cy="295.7" r="2.33" fill="#f0d79b" opacity="0.7"/>
+    <circle cx="101.6" cy="70.5" r="1.39" fill="#e3b854" opacity="0.39"/>
+    <circle cx="244.1" cy="120.7" r="2.34" fill="#f0d79b" opacity="0.54"/>
+    <circle cx="304.7" cy="252.1" r="0.9" fill="#e3b854" opacity="0.45"/>
+    <circle cx="289.6" cy="141.2" r="2.57" fill="#f0d79b" opacity="0.55"/>
+    <circle cx="25.1" cy="188.1" r="2.22" fill="#f0d79b" opacity="0.48"/>
+    <circle cx="29.5" cy="100.8" r="2.54" fill="#f0d79b" opacity="0.73"/>
+    <circle cx="39.3" cy="75.4" r="1.07" fill="#e3b854" opacity="0.38"/>
+    <circle cx="253.9" cy="55.2" r="1.85" fill="#f0d79b" opacity="0.57"/>
+    <circle cx="62.3" cy="218.2" r="1.12" fill="#e3b854" opacity="0.67"/>
+    <circle cx="38.8" cy="126.7" r="1.26" fill="#e3b854" opacity="0.48"/>
+    <circle cx="308.8" cy="239.2" r="1.42" fill="#e3b854" opacity="0.79"/>
+    <circle cx="68.6" cy="118.9" r="2.35" fill="#f0d79b" opacity="0.67"/>
+    <circle cx="33.7" cy="293.9" r="1.26" fill="#e3b854" opacity="0.48"/>
+    <circle cx="246.2" cy="99.7" r="1.4" fill="#e3b854" opacity="0.39"/>
+    <circle cx="30.5" cy="174.3" r="1.31" fill="#e3b854" opacity="0.65"/>
+    <circle cx="119.5" cy="136.2" r="2.53" fill="#f0d79b" opacity="0.59"/>
+</svg>

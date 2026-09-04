@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="26" height="210" viewBox="0 0 26 210">
+  <!-- FAR tile for the chintz stripe on the About panels. Roses are scattered
+       rather than stepped, so the repeat does not read as a pattern. Palette:
+       petals #c9a3bd, heart #6b2f5c, stem and leaves #8f7252. Each group below
+       is one bloom: translate is where it sits, scale is how big, opacity is how
+       near. Move them freely; the tile only has to stay 210 tall so the CSS
+       animation keeps looping seamlessly. -->
+  <g>
+    <g transform="translate(17 38) scale(0.36)" opacity="0.55">
+      <path d="M 0 4.6 L 0 11.4" stroke="#8f7252" stroke-width="1" stroke-linecap="round"/>
+      <ellipse cx="-4.1" cy="8.4" rx="3" ry="1.35" transform="rotate(-28 -4.1 8.4)" fill="#8f7252"/>
+      <ellipse cx="4.1" cy="8.4" rx="3" ry="1.35" transform="rotate(28 4.1 8.4)" fill="#8f7252"/>
+      <g fill="#c9a3bd">
+        <ellipse rx="3" ry="3.7" cy="-3.3"/>
+        <ellipse rx="3" ry="3.7" cy="-3.3" transform="rotate(72)"/>
+        <ellipse rx="3" ry="3.7" cy="-3.3" transform="rotate(144)"/>
+        <ellipse rx="3" ry="3.7" cy="-3.3" transform="rotate(216)"/>
+        <ellipse rx="3" ry="3.7" cy="-3.3" transform="rotate(288)"/>
+        <circle r="4.1"/>
+      </g>
+      <path d="M 0 -2.4 A 2.4 2.4 0 1 1 -2.4 0 A 1.5 1.5 0 1 0 -0.9 1.5"
+            fill="none" stroke="#6b2f5c" stroke-width="1.05" stroke-linecap="round"/>
+    </g>
+    <g transform="translate(6 99) scale(0.3)" opacity="0.42">
+      <path d="M 0 4.6 L 0 11.4" stroke="#8f7252" stroke-width="1" stroke-linecap="round"/>
+      <ellipse cx="-4.1" cy="8.4" rx="3" ry="1.35" transform="rotate(-28 -4.1 8.4)" fill="#8f7252"/>
+      <ellipse cx="4.1" cy="8.4" rx="3" ry="1.35" transform="rotate(28 4.1 8.4)" fill="#8f7252"/>
+      <g fill="#c9a3bd">
+        <ellipse rx="3" ry="3.7" cy="-3.3"/>
+        <ellipse rx="3" ry="3.7" cy="-3.3" transform="rotate(72)"/>
+        <ellipse rx="3" ry="3.7" cy="-3.3" transform="rotate(144)"/>
+        <ellipse rx="3" ry="3.7" cy="-3.3" transform="rotate(216)"/>
+        <ellipse rx="3" ry="3.7" cy="-3.3" transform="rotate(288)"/>
+        <circle r="4.1"/>
+      </g>
+      <path d="M 0 -2.4 A 2.4 2.4 0 1 1 -2.4 0 A 1.5 1.5 0 1 0 -0.9 1.5"
+            fill="none" stroke="#6b2f5c" stroke-width="1.05" stroke-linecap="round"/>
+    </g>
+    <g transform="translate(19 158) scale(0.34)" opacity="0.48">
+      <path d="M 0 4.6 L 0 11.4" stroke="#8f7252" stroke-width="1" stroke-linecap="round"/>
+      <ellipse cx="-4.1" cy="8.4" rx="3" ry="1.35" transform="rotate(-28 -4.1 8.4)" fill="#8f7252"/>
+      <ellipse cx="4.1" cy="8.4" rx="3" ry="1.35" transform="rotate(28 4.1 8.4)" fill="#8f7252"/>
+      <g fill="#c9a3bd">
+        <ellipse rx="3" ry="3.7" cy="-3.3"/>
+        <ellipse rx="3" ry="3.7" cy="-3.3" transform="rotate(72)"/>
+        <ellipse rx="3" ry="3.7" cy="-3.3" transform="rotate(144)"/>
+        <ellipse rx="3" ry="3.7" cy="-3.3" transform="rotate(216)"/>
+        <ellipse rx="3" ry="3.7" cy="-3.3" transform="rotate(288)"/>
+        <circle r="4.1"/>
+      </g>
+      <path d="M 0 -2.4 A 2.4 2.4 0 1 1 -2.4 0 A 1.5 1.5 0 1 0 -0.9 1.5"
+            fill="none" stroke="#6b2f5c" stroke-width="1.05" stroke-linecap="round"/>
+    </g>
+  </g>
+</svg>
