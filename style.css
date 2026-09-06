@@ -1409,6 +1409,41 @@ a:focus-visible {
 }
 
 
+/* ------- verse -------
+   Poems break where the poet broke them. Each stanza is a paragraph and each
+   line inside it is a block, so a line too long for the column hangs its
+   continuation indented and still reads as one line rather than two. */
+
+.entry-body .poem {
+  max-width: 34rem;
+}
+
+.entry-body .poem p {
+  margin: 0 0 1.9rem;
+  font-size: 1.03rem;
+  line-height: 1.95;
+  color: #c9ad8b;
+}
+
+/* each line is its own block, which is the only way a hanging indent can apply
+   per line rather than once per stanza */
+.entry-body .poem .line {
+  display: block;
+  padding-left: 1.5rem;
+  text-indent: -1.5rem;
+}
+
+.entry-body .poem p:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 540px) {
+  .entry-body .poem p {
+    font-size: 0.98rem;
+    line-height: 1.85;
+  }
+}
+
 /* ------- the album's lightbox -------
    One overlay shared by every photograph, filled in as you step through, so the
    page carries a single copy of each image and nothing is duplicated. The
