@@ -9,7 +9,7 @@
 Only the standard library. The HTML files stay the real thing — nothing here is a
 build step, and the site works if you never run any of it.
 """
-import os, re, sys, html as _html, subprocess
+import os, re, sys, html as _html, hashlib, subprocess
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -17,6 +17,20 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 NAV = [("Home", "/index.html"), ("Writing", "/writing.html"), ("Research", "/research.html"),
        ("Workshop", "/workshop.html"), ("Kitchen", "/kitchen.html"), ("About", "/about.html")]
+
+def style_version():
+    """A fingerprint of style.css, so its URL changes exactly when it changes.
+
+    Cloudflare tells browsers to hold the stylesheet for hours, which is right
+    until the day you change the design and spend twenty minutes wondering why
+    the page looks the same. The query string makes each version a different URL,
+    so a redesign lands the moment it is pushed and nothing else is re-fetched.
+    """
+    css = os.path.join(ROOT, "style.css")
+    if not os.path.exists(css):
+        return ""
+    return hashlib.sha1(open(css, "rb").read()).hexdigest()[:8]
+
 
 FOOTER = ('Julie and Onions · planted 2026 · contact — '
           '<a href="mailto:hayden@julieandonions.com">hayden@julieandonions.com</a>')
@@ -70,11 +84,16 @@ def active_for(path):
 
 
 def sync():
-    changed = []
+    changed, version = [], style_version()
     for path in pages():
         src = open(path, encoding="utf-8").read()
-        if 'class="site-nav"' not in src:
-            continue                                  # redirect stubs have no nav
+        if 'class="site-nav"' not in src:          # redirect stubs have no nav,
+            out = re.sub(r'href="/style\.css(?:\?v=[0-9a-f]+)?"',   # but do have a stylesheet
+                         'href="/style.css?v=%s"' % version, src)
+            if out != src:
+                open(path, "w", encoding="utf-8").write(out)
+                changed.append(rel(path))
+            continue
         active = active_for(path)
         links = "".join(
             '\n          <a href="%s"%s>%s</a>' % (href, ' class="active"' if href == active else "", label)
@@ -83,6 +102,8 @@ def sync():
         out = re.sub(r'<nav class="site-nav".*?</nav>', lambda m: nav, src, flags=re.S)
         out = re.sub(r'(<footer class="site-footer">).*?(</footer>)',
                      lambda m: m.group(1) + FOOTER + m.group(2), out, flags=re.S)
+        out = re.sub(r'href="/style\.css(?:\?v=[0-9a-f]+)?"',
+                     'href="/style.css?v=%s"' % version, out)
         if out != src:
             open(path, "w", encoding="utf-8").write(out)
             changed.append(rel(path))
@@ -136,7 +157,7 @@ def check():
     for path in pages():
         src = open(path, encoding="utf-8").read()
         for m in re.finditer(r'(?:href|src)="(/[^"]+)"', src):
-            t = m.group(1)
+            t = m.group(1).split("?")[0]
             linked.add(t)
             if t.endswith((".html", ".css", ".svg", ".png", ".jpg")):
                 if not os.path.exists(os.path.join(ROOT, t.lstrip("/"))):
