@@ -1,6 +1,7 @@
 /* Julie and Onions — the room at dusk.
    One lamp on the host stand; violet in the air; the dog asleep somewhere near the door;
-   and someone just left the room — the air still warm where she stood. */
+   someone just left the room — the air still warm where she stood; and something
+   low along the floor that nobody mentions. */
 
 :root {
   --room-hi: #463019;
@@ -108,6 +109,28 @@ html::before {
   50%  { transform: translate(85vw, 14vh);  opacity: 0.75; }
   82%  { opacity: 0.4; }
   100% { transform: translate(140vw, 4vh);  opacity: 0; }
+}
+
+/* the one along the floor. Not a figure — a low dark that lies against the
+   bottom edge of the room, where the lamp does not reach, nearly transparent,
+   and breathes there very slowly. It never rises into the room and it never
+   leaves; the floor is just a little darker than the lamp can account for. */
+html::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    linear-gradient(to top, rgba(9, 5, 2, 0.16), rgba(9, 5, 2, 0.06) 9%, transparent 22%),
+    radial-gradient(ellipse 60% 18% at 50% 100%, rgba(9, 5, 2, 0.12), transparent 70%);
+  opacity: 0.8;
+  animation: floor-breathe 31s ease-in-out infinite alternate;
+}
+
+@keyframes floor-breathe {
+  from { opacity: 0.55; }
+  to   { opacity: 1; }
 }
 
 /* wood grain in the air */
@@ -279,7 +302,7 @@ a:focus-visible {
 }
 
 .brand-title {
-  margin: 0 0 1.15rem;
+  margin: 0 0 1.05rem;
   font-size: clamp(2.9rem, 4.4vw, 4.5rem);
   line-height: 0.92;
   letter-spacing: 0.005em;
@@ -289,20 +312,21 @@ a:focus-visible {
 
 .host-epigraph {
   font-style: italic;
-  font-size: 0.89rem;
+  font-size: clamp(1.1rem, 1.3vw, 1.28rem);
   color: var(--ink-soft);
-  max-width: 24rem;
-  margin: 0 0 2rem;
-  line-height: 1.55;
+  max-width: 26rem;
+  margin: 0 0 2.2rem;
+  line-height: 1.45;
 }
 
-/* the aroma gets into the rule: amber giving way to violet */
-.host-epigraph::after {
+/* the aroma gets into the rule: amber giving way to violet — set between the
+   title and the subtitle, like the rule under a masthead */
+.host-epigraph::before {
   content: "";
   display: block;
-  width: 72px;
-  height: 2px;
-  margin-top: 1.3rem;
+  width: 128px;
+  height: 3px;
+  margin: 0 0 1.1rem;
   background: linear-gradient(90deg, rgba(164, 95, 69, 0.85), rgba(226, 129, 143, 0.55) 45%, rgba(167, 107, 153, 0.6), transparent);
 }
 
@@ -584,6 +608,7 @@ a:focus-visible {
 
   body::before,
   html::before,
+  html::after,
   body:not(.about) .site-shell::before {
     animation: none;
   }
@@ -645,17 +670,15 @@ a:focus-visible {
    stand by management, few words, ruled above and below. Numbered like terms,
    because they are. */
 .notice-head {
-  margin: 0 0 0.85rem;
+  margin: 0 0 0.8rem;
   font-family: var(--serif);
-  font-size: clamp(1.02rem, 1.25vw, 1.2rem);
-  line-height: 1.2;
-  letter-spacing: 0.17em;
-  text-transform: uppercase;
+  font-style: italic;
+  font-size: 0.98rem;
+  line-height: 1.3;
   color: var(--ink-soft);
-  padding: 0.45rem 0;
-  border-top: 1px solid rgba(42, 28, 17, 0.42);
-  border-bottom: 1px solid rgba(42, 28, 17, 0.42);
-  max-width: 25.5rem;
+  padding: 0 0 0.45rem;
+  border-bottom: 1px solid rgba(42, 28, 17, 0.22);
+  max-width: 19rem;
 }
 
 .notice-terms {
@@ -665,16 +688,16 @@ a:focus-visible {
   padding: 0;
   display: grid;
   gap: 0.55rem;
-  max-width: 25.5rem;
+  max-width: 19rem;
 }
 
 .notice-terms li {
   counter-increment: term;
   position: relative;
-  padding-left: 2.1rem;
-  font-size: 0.97rem;
+  padding-left: 2rem;
+  font-size: 0.9rem;
   line-height: 1.55;
-  color: var(--ink);
+  color: var(--ink-soft);
 }
 
 .notice-terms li::before {
@@ -683,13 +706,13 @@ a:focus-visible {
   left: 0;
   top: 0.2em;
   font-family: var(--caps);
-  font-size: 0.68rem;
+  font-size: 0.62rem;
   letter-spacing: 0.08em;
   color: var(--ink-soft);
+  opacity: 0.75;
 }
 
 .notice-terms li:last-child {
-  color: var(--ink-soft);
   font-style: italic;
 }
 
@@ -1422,13 +1445,18 @@ a:focus-visible {
   .home .home-grid {
     /* the middle track never falls below the onion's cut size, so the figure
        is never squeezed by the column the way it was between 1100 and 1280 */
-    grid-template-columns: minmax(340px, 0.95fr) minmax(236px, 0.42fr) minmax(230px, 0.6fr);
+    grid-template-columns: minmax(340px, 520px) minmax(236px, 0.42fr) minmax(230px, 0.6fr);
     column-gap: clamp(2.4rem, 3.4vw, 4.6rem);
   }
 
   .home .home-grid .left-column {
-    max-width: 660px;
-    padding: 3rem 2.8rem 3.3rem;
+    max-width: 520px;
+    padding: 3rem 2.6rem 3.3rem;
+  }
+
+  /* the onion keeps close to the stand rather than centring in its track */
+  .home .cut-figure {
+    justify-self: start;
   }
 
   .home .brand-title {
@@ -1436,7 +1464,7 @@ a:focus-visible {
   }
 
   .home .host-epigraph {
-    max-width: 28rem;
+    max-width: 26rem;
   }
 
   .home .home-grid .right-column {
