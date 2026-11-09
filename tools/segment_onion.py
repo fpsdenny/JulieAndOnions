@@ -4,13 +4,19 @@ whole onion, so the graph cut claims the pale flesh between them and leaves
 the board (similar color, but disconnected from the lattice) as background.
 """
 
+import os
+import sys
 import cv2
 import numpy as np
 from PIL import Image
 
-SRC = r"C:\Users\hayde\OneDrive\Pictures\20260705_190801.jpg"
-SCRATCH = r"C:\Users\hayde\AppData\Local\Temp\claude\C--Users-hayde-JulieAndOnions\23759322-260c-4af5-8dca-39c4ee22112d\scratchpad"
-OUT_MASK = r"C:\Users\hayde\JulieAndOnions\JulieAndOnions\images\onion-mask.png"
+# The source photograph lives outside the repository (it is not published).
+#     python tools/segment_onion.py path/to/onion-photo.jpg
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+SRC = sys.argv[1] if len(sys.argv) > 1 else os.path.join(ROOT, "..", "onion-original.jpg")
+SCRATCH = os.path.join(ROOT, "..", "onion-scratch")
+OUT_MASK = os.path.join(ROOT, "images", "onion-mask.png")
+os.makedirs(SCRATCH, exist_ok=True)
 
 WORK_W = 1000
 SEED_P, SEED_L = 26, 198     # purpleness (raw, 0-centered) and lightness for sure-FG lines
@@ -85,5 +91,5 @@ Image.composite(white, clear, alpha_img).save(OUT_MASK)
 
 review = Image.new("RGB", alpha_img.size, ROOM)
 review.paste(Image.new("RGB", alpha_img.size, PAPER), (0, 0), alpha_img)
-review.save(SCRATCH + r"\onion_mask_review.png")
+review.save(os.path.join(SCRATCH, "onion_mask_review.png"))
 print("mask:", OUT_MASK, alpha_img.size)
