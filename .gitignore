@@ -38,6 +38,8 @@ env/
 .vscode/
 .idea/
 .claude/
+# the Claude desktop app drops delivered files (diffs, screenshots) here
+Claude outputs/
 *.swp
 *.swo
 *~

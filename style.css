@@ -1,5 +1,6 @@
 /* Julie and Onions — the room at dusk.
-   One lamp on the host stand; violet in the air; the dog asleep somewhere near the door. */
+   One lamp on the host stand; violet in the air; the dog asleep somewhere near the door;
+   and someone just left the room — the air still warm where she stood. */
 
 :root {
   --room-hi: #463019;
@@ -19,6 +20,13 @@
   --violet-bright: #c9a3bd;
   --violet-deep: #6b2f5c;
   --line: rgba(234, 199, 152, 0.17);
+  /* hers — lifted from the hibiscus: the petal, its pale edge, the eye, the pollen.
+     Used only in traces. She is never drawn; the room remembers her. */
+  --bloom: #e2818f;
+  --bloom-pale: #f4c3c4;
+  --bloom-deep: #8b2432;
+  --pollen: #e3b854;
+  --aside: #c9ad8b;
   --shadow-deep: rgba(8, 4, 2, 0.38);
   --max-width: 1180px;
   --serif: "Palatino Linotype", Palatino, "Book Antiqua", "Iowan Old Style", Georgia, serif;
@@ -45,6 +53,63 @@ body {
   line-height: 1.65;
 }
 
+/* the fog: a low haze of lamplight and violet drifting through the room on a cycle
+   too slow to watch, breathing with the lamp. It never resolves into a shape — it
+   is the dream before it has a subject. Fixed behind everything, over the room's
+   gradient and under the paper. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: -30%;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 42% 34% at 30% 40%, rgba(236, 178, 112, 0.22), transparent 70%),
+    radial-gradient(ellipse 36% 30% at 68% 62%, rgba(201, 163, 189, 0.12), transparent 70%),
+    radial-gradient(ellipse 50% 24% at 50% 85%, rgba(226, 158, 82, 0.12), transparent 70%);
+  filter: blur(28px);
+  animation: fog-drift 140s ease-in-out infinite alternate,
+             lamp-breathe 23s ease-in-out infinite alternate;
+}
+
+@keyframes fog-drift {
+  0%   { transform: translate(-4%, 2%) scale(1); }
+  50%  { transform: translate(3%, -3%) scale(1.06); }
+  100% { transform: translate(5%, 3%) scale(1.02); }
+}
+
+@keyframes lamp-breathe {
+  from { opacity: 0.82; }
+  to   { opacity: 1; }
+}
+
+/* her passing: one warm pool the colour of the petal, crossing the room from the
+   door to the lamp over three and a half minutes, barely there at the edges and
+   never quite arriving. Its period shares no factor with the fog's, so the two
+   meet differently every time. Felt, not seen. */
+html::before {
+  content: "";
+  position: fixed;
+  top: 10%;
+  left: -40%;
+  width: 70vw;
+  height: 70vh;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, rgba(226, 129, 143, 0.13), rgba(244, 195, 196, 0.04) 45%, transparent 70%);
+  filter: blur(40px);
+  opacity: 0;
+  animation: her-passing 210s ease-in-out infinite;
+}
+
+@keyframes her-passing {
+  0%   { transform: translate(0, 0);        opacity: 0; }
+  18%  { opacity: 0.55; }
+  50%  { transform: translate(85vw, 14vh);  opacity: 0.75; }
+  82%  { opacity: 0.4; }
+  100% { transform: translate(140vw, 4vh);  opacity: 0; }
+}
+
 /* wood grain in the air */
 body::after {
   content: "";
@@ -57,8 +122,8 @@ body::after {
 }
 
 ::selection {
-  background: var(--violet-deep);
-  color: #f6e8d2;
+  background: var(--bloom-deep);
+  color: var(--bloom-pale);
 }
 
 img {
@@ -192,12 +257,14 @@ a:focus-visible {
   max-width: 540px;
   background:
     radial-gradient(circle at 15% 9%, rgba(255, 247, 234, 0.38), transparent 34%),
+    radial-gradient(circle at 92% 96%, rgba(226, 129, 143, 0.085), transparent 38%),
     linear-gradient(160deg, var(--paper-hi) 0%, var(--paper-low) 100%);
   border: 1px solid rgba(30, 18, 9, 0.26);
   box-shadow:
-    0 20px 46px var(--shadow-deep),
-    0 4px 14px rgba(8, 4, 2, 0.24),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    0 26px 56px var(--shadow-deep),
+    0 4px 14px rgba(8, 4, 2, 0.26),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    inset 0 0 70px rgba(74, 44, 18, 0.10);
   position: relative;
 }
 
@@ -236,7 +303,7 @@ a:focus-visible {
   width: 72px;
   height: 2px;
   margin-top: 1.3rem;
-  background: linear-gradient(90deg, rgba(164, 95, 69, 0.85), rgba(167, 107, 153, 0.6), transparent);
+  background: linear-gradient(90deg, rgba(164, 95, 69, 0.85), rgba(226, 129, 143, 0.55) 45%, rgba(167, 107, 153, 0.6), transparent);
 }
 
 .host-verse {
@@ -275,14 +342,17 @@ a:focus-visible {
 .cut-figure::before {
   content: "";
   position: absolute;
-  left: -30%;
-  right: -30%;
-  top: -14%;
-  height: 78%;
-  background: radial-gradient(ellipse at 50% 55%, rgba(197, 142, 183, 0.3), transparent 68%);
-  filter: blur(26px);
+  left: -38%;
+  right: -38%;
+  top: -20%;
+  height: 90%;
+  background:
+    radial-gradient(ellipse at 50% 55%, rgba(197, 142, 183, 0.3), transparent 68%),
+    radial-gradient(ellipse at 62% 40%, rgba(226, 129, 143, 0.09), transparent 60%);
+  filter: blur(32px);
   pointer-events: none;
-  animation: breathe 9s ease-in-out infinite alternate;
+  animation: breathe 9s ease-in-out infinite alternate,
+             fog-drift 140s ease-in-out infinite alternate;
 }
 
 @keyframes breathe {
@@ -410,7 +480,7 @@ a:focus-visible {
 
 .page-description {
   margin: 0;
-  color: var(--parch-dim);
+  color: var(--aside);
   max-width: 36rem;
 }
 
@@ -512,6 +582,17 @@ a:focus-visible {
     scroll-behavior: auto;
   }
 
+  body::before,
+  html::before,
+  body:not(.about) .site-shell::before {
+    animation: none;
+  }
+
+  html::before {
+    opacity: 0.35;
+    transform: translate(60vw, 10vh);
+  }
+
   .cut-figure::before {
     animation: none;
   }
@@ -558,6 +639,58 @@ a:focus-visible {
 
 .stand-board .item-name {
   color: var(--ink);
+}
+
+/* the posted notice: the house speaking in its own voice — a card set on the
+   stand by management, few words, ruled above and below. Numbered like terms,
+   because they are. */
+.notice-head {
+  margin: 0 0 0.85rem;
+  font-family: var(--serif);
+  font-size: clamp(1.02rem, 1.25vw, 1.2rem);
+  line-height: 1.2;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  padding: 0.45rem 0;
+  border-top: 1px solid rgba(42, 28, 17, 0.42);
+  border-bottom: 1px solid rgba(42, 28, 17, 0.42);
+  max-width: 25.5rem;
+}
+
+.notice-terms {
+  list-style: none;
+  counter-reset: term;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.55rem;
+  max-width: 25.5rem;
+}
+
+.notice-terms li {
+  counter-increment: term;
+  position: relative;
+  padding-left: 2.1rem;
+  font-size: 0.97rem;
+  line-height: 1.55;
+  color: var(--ink);
+}
+
+.notice-terms li::before {
+  content: counter(term, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 0.2em;
+  font-family: var(--caps);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  color: var(--ink-soft);
+}
+
+.notice-terms li:last-child {
+  color: var(--ink-soft);
+  font-style: italic;
 }
 
 .stand-contact {
@@ -615,7 +748,7 @@ a:focus-visible {
   max-width: 44rem;
   font-style: italic;
   font-size: 0.92rem;
-  color: var(--parch-dim);
+  color: var(--aside);
 }
 
 .quiet-door::before {
@@ -865,7 +998,7 @@ a:focus-visible {
   width: 60px;
   height: 2px;
   margin-top: 0.7rem;
-  background: linear-gradient(90deg, rgba(164, 95, 69, 0.85), rgba(167, 107, 153, 0.6), transparent);
+  background: linear-gradient(90deg, rgba(164, 95, 69, 0.85), rgba(226, 129, 143, 0.55) 45%, rgba(167, 107, 153, 0.6), transparent);
 }
 
 .desk-note {
@@ -993,7 +1126,7 @@ a:focus-visible {
   width: 60px;
   height: 2px;
   margin-top: 0.75rem;
-  background: linear-gradient(90deg, rgba(164, 95, 69, 0.85), rgba(167, 107, 153, 0.6), transparent);
+  background: linear-gradient(90deg, rgba(164, 95, 69, 0.85), rgba(226, 129, 143, 0.55) 45%, rgba(167, 107, 153, 0.6), transparent);
 }
 
 /* ------- montage pieces: quoted matter, rules, centred prose ------- */
@@ -1115,7 +1248,7 @@ a:focus-visible {
   width: 60px;
   height: 2px;
   margin-top: 1.1rem;
-  background: linear-gradient(90deg, rgba(164, 95, 69, 0.85), rgba(167, 107, 153, 0.6), transparent);
+  background: linear-gradient(90deg, rgba(164, 95, 69, 0.85), rgba(226, 129, 143, 0.55) 45%, rgba(167, 107, 153, 0.6), transparent);
 }
 
 /* a status line under a room's pinned list: a note about what is coming,
@@ -1384,6 +1517,29 @@ a:focus-visible {
   mask-image: linear-gradient(to left, #000 2%, rgba(0, 0, 0, 0.6) 30%, transparent 92%);
   animation: pollen-drift 120s linear infinite,
              pollen-breathe 19s ease-in-out infinite alternate;
+}
+
+/* elsewhere in the house: a few grains only, the far tile alone, held well back.
+   Enough to say she was in the room; not enough to say where she went. */
+body:not(.about) .site-shell::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 260px;
+  z-index: -2;
+  pointer-events: none;
+  background: url("images/pollen-far.svg") repeat-x 0 -40px / 760px 300px;
+  -webkit-mask-image: linear-gradient(to left, transparent 4%, rgba(0, 0, 0, 0.5) 40%, transparent 96%);
+  mask-image: linear-gradient(to left, transparent 4%, rgba(0, 0, 0, 0.5) 40%, transparent 96%);
+  opacity: 0.22;
+  animation: pollen-drift-far 200s linear infinite;
+}
+
+@keyframes pollen-drift-far {
+  from { background-position: 0 -40px; }
+  to   { background-position: -760px -40px; }
 }
 
 @keyframes pollen-drift {
