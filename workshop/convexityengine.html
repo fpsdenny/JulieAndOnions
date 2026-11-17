@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>ConvexityEngine • Julie and Onions</title>
-    <meta name="description" content="ConvexityEngine — live market-monitoring infrastructure: ingestion, state, snapshots and alerting, built to run unattended.">
+    <meta name="description" content="ConvexityEngine — market analysis and research tools for small teams, built to capitalize on macro-trends. Slated for mid-2028 release.">
     <link rel="stylesheet" href="/style.css?v=03aa4742">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   </head>
@@ -24,21 +24,15 @@
         <section class="page-hero">
           <span class="page-eyebrow">Julie and Onions · Workshop</span>
           <h1 class="page-title">ConvexityEngine</h1>
-          <p class="page-description">market infrastructure · running</p>
+          <p class="page-description">market infrastructure · under construction</p>
         </section>
         <div class="entry-body">
-          <p>A live monitoring engine for a personal trading practice: webhook ingestion from charting alerts, a state registry that tracks instruments through their regimes, snapshot logging, and an alerting layer — Postgres and serverless functions, wired to run unattended.</p>
-          <h2>How it is put together</h2>
-          <p>The system is a pipeline with four separable stages, and the separation is the point. Charting alerts arrive at a webhook endpoint as they fire. That endpoint's only job is to accept the message, validate it, and write it down — it makes no decisions, because an endpoint that decides is an endpoint that can be wrong in ways you cannot reconstruct later.</p>
-          <p>Behind it, a state registry holds the current picture: which instruments are being watched, and what regime each is understood to be in. This is the system of record. Alerts move instruments between states; the registry is what anything downstream reads.</p>
-          <p>Alongside the registry, snapshots accumulate — a log of what the system believed and when it believed it. A live state table answers "what is true now"; the snapshot history answers "what did this look like on the day, and why did it act the way it did." The second question is the one worth being able to answer, and it can only be answered if you were writing it down before you needed it.</p>
-          <p>The alerting layer sits at the end, reading state and reaching the operator when something warrants attention.</p>
-          <h2>Why it runs unattended</h2>
-          <p>Because markets do not wait for the operator to be at a desk, and because a monitor that needs babysitting is a second job rather than a tool. Serverless functions mean there is no machine to keep alive, no process to restart, and nothing that quietly dies at three in the morning and is discovered at nine. Postgres holds the state so that the compute can be stateless and disposable: any invocation can fail and be retried without the system losing its place.</p>
-          <p>[Worth adding in your own words: how repeated or duplicate alert deliveries are handled, and what happens when an alert arrives for an instrument the registry has never seen. Those two answers are what a technical reader will want.]</p>
-          <h2>What it deliberately does not do</h2>
-          <p>It does not execute. It does not size. It holds no view about what should be bought or sold — that judgment stays with the operator, and the reasoning behind it stays private. The engine's remit is narrow on purpose: watch, record, and say something when a watched thing changes. A narrow remit is why the architecture can be described in public at all.</p>
-          <p class="fine">The engineering is described here; the strategy it serves is not, by design.</p>
+          <p>The firm is currently building out a set of market analysis and research tools. We are seeking to provide a comprehensive, sophisticated dashboard to allow small teams to capitalize on macro-trends.</p>
+          <p>Attention to detail is key to anticipating when market discontinuities, which can be extremely profitable events for small firms and offer extensive protections in specific hedging scenarios. However, staying on top of markets and keeping an upright view of the global macro state can be difficult. Over the last few years, we have sought to translate the view that helped catch the trades that make the market. </p>
+          <p>The firm's thesis centers around operational flexibility, and the synthesis of orthodox economic ideas with the mathematical reason capacity of artificial intelligence to rise to the challenge of a rapidly changing digital domain. Make no mistake, we are not offering a conventional analytical approach to trading. We have formulated over the years a complete ideological map of street-level macro trends, to create an edge for smaller traders and teams to capitalize in a financial world dominated by quants, investment banks and high frequency trading algorithms.</p>
+          <p>AI alone will not be enough to consistently create profits over the next few years. If you have a personal assistant, so does the guy on the other end of your trade. It's always the economy, stupid. We give you the data, you make the trade.</p>
+          <h2>Slated for mid-2028 release</h2>
+          <p>Inquiries can be made to <a href="mailto:business@julieandonions.com">business@julieandonions.com</a></p>
         </div>
         <p class="quiet-door"><a href="/workshop.html">Back to the workshop</a>.</p>
       </main>
