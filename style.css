@@ -995,6 +995,13 @@ a:focus-visible {
   border-bottom: 1px solid rgba(90, 60, 38, 0.22);
 }
 
+/* when the feature is all the box holds, it closes the box: no divider */
+.room-box > .desk-feature:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
 .desk-handle {
   display: block;
   font-size: 1.35rem;
@@ -1265,7 +1272,8 @@ a:focus-visible {
 
 /* when the quote opens the box, give it the house rule beneath */
 .desk-feature > .desk-quote:first-child::after,
-.room-box > .desk-quote:first-child::after {
+.room-box > .desk-quote:first-child::after,
+.room-box > .desk-feature:last-child > .desk-quote:last-child::after {
   content: "";
   display: block;
   width: 60px;
